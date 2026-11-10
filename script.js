@@ -22,7 +22,7 @@
   var menu = document.getElementById("mobileMenu");
   function setMenu(open) {
     burger.setAttribute("aria-expanded", String(open));
-    burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    burger.setAttribute("aria-label", open ? tr("a11y.close", "Close menu") : tr("a11y.open", "Open menu"));
     menu.hidden = !open;
   }
   burger.addEventListener("click", function () { setMenu(menu.hidden); });
@@ -103,7 +103,7 @@
   function syncTheme() {
     var light = currentTheme() === "light";
     themeBtn.classList.toggle("is-light", light);
-    themeBtn.setAttribute("aria-label", light ? "Switch to dark theme" : "Switch to light theme");
+    themeBtn.setAttribute("aria-label", light ? tr("a11y.dark", "Switch to dark theme") : tr("a11y.light", "Switch to light theme"));
     var meta = document.querySelector('meta[name="theme-color"]');
     if (meta) meta.content = light ? "#fafafa" : "#090909";
   }
@@ -118,14 +118,16 @@
   syncTheme();
 
   /* ---------- Bilingual: English lives in the HTML, Arabic here ---------- */
+  /* Arabic copy: rendered into /ar/ at build time (tools/build-ar.mjs) and used for strings set from script */
+  function tr(key, en) { return document.documentElement.lang === "ar" && AR && AR[key] ? AR[key] : en; }
   var AR = {
     "skip": "تخطَّ إلى المحتوى",
     "nav.work": "أعمالنا", "nav.services": "خدماتنا", "nav.process": "طريقة العمل",
     "nav.pricing": "الأسعار", "nav.faq": "الأسئلة الشائعة", "nav.cta": "تدقيق مجاني",
 
     "hero.eyebrow": "استوديو تصميم مواقع ونمو · دبي، الإمارات",
-    "hero.h1": "مواقع تجلب لك العملاء.",
-    "hero.sub": "نصمّم ونطوّر مواقع سريعة وثنائية اللغة للعلامات الطموحة في دبي والإمارات ودول الخليج. نقيس نجاح عملنا بعدد العملاء المحتملين والإيرادات، لا بالإعجابات.",
+    "hero.h1": "تصميم مواقع في دبي يجلب لك العملاء.",
+    "hero.sub": "أوبن جروث شركة تصميم مواقع في دبي تبني مواقع سريعة ثنائية اللغة بالعربية والإنجليزية للشركات الخدمية في الإمارات ودول الخليج. نقيس عملنا بعدد الاستفسارات والإيرادات، لا بالإعجابات.",
     "hero.cta1": "احصل على تدقيق مجاني لموقعك",
     "hero.cta2": "تواصل عبر واتساب",
     "mock.label": "العملاء المحتملون المؤهَّلون · آخر 90 يومًا",
@@ -163,10 +165,10 @@
     "case4.body": "واجهة Shopify أسرع، ومنطق شحن يغطي دول الخليج، وصفحة دفع تحوّل 4.8% من الزوار.",
 
     "svc.eyebrow": "ماذا نقدّم",
-    "svc.h2": "فريق واحد للتصميم والتطوير والنمو.",
+    "svc.h2": "خدمات تصميم المواقع، من أول مسودة حتى عملاء أكثر.",
     "svc1.h": "تصميم وتطوير المواقع",
     "svc1.p": "مواقع تركّز على التحويل عبر Webflow أو Framer أو WordPress أو برمجة مخصصة، مصمّمة للجوال أولًا وتحقق أكثر من 90 في PageSpeed.",
-    "svc2.h": "تجربة عربية وثنائية اللغة",
+    "svc2.h": "تصميم مواقع عربية وثنائية اللغة",
     "svc2.p": "تخطيطات صحيحة من اليمين إلى اليسار، ومحتوى وخطوط عربية أصيلة. لا نكتفي بترجمة الصفحة الإنجليزية.",
     "svc3.h": "تحسين محركات البحث والمحتوى",
     "svc3.p": "تحسين تقني، وبحث محلي في الإمارات والخليج، ومحتوى يتصدّر النتائج باللغتين.",
@@ -192,8 +194,8 @@
     "proc.cta.p": "لست متأكدًا من أين تبدأ؟ ابدأ بالتدقيق المجاني.",
 
     "price.eyebrow": "أسعار تقديرية",
-    "price.h2": "أسعار واضحة، بلا مفاجآت.",
-    "price.sub": "نسعّر كل مشروع حسب نطاقه. هذه النطاقات تغطي معظم عملائنا في الإمارات.",
+    "price.h2": "تكلفة تصميم موقع في دبي، بلا مفاجآت.",
+    "price.sub": "نسعّر كل مشروع حسب نطاقه. يستثمر معظم عملائنا في الإمارات بين 18,000 و70,000 درهم، حسب عدد الصفحات واللغات والتكاملات.",
     "from": "ابتداءً من",
     "plan.cta": "اطلب عرض سعر",
     "plan1.h": "انطلاق", "plan1.d": "للعلامات الجديدة التي تحتاج موقعًا سريعًا وموثوقًا.",
@@ -212,8 +214,12 @@
     "q3.r": "الرئيس التنفيذي، عود هاوس",
 
     "faq.eyebrow": "الأسئلة الشائعة",
-    "faq.h2": "أسئلة نسمعها كثيرًا.",
-    "f1.q": "كم يستغرق بناء الموقع؟",
+    "faq.h2": "أسئلة عن تصميم المواقع في دبي.",
+    "f0.q": "كم تكلفة تصميم موقع إلكتروني في دبي؟",
+    "f0.a": "تعتمد التكلفة على نطاق العمل. قد تبدأ المواقع الجاهزة في دبي بأقل من 5,000 درهم، بينما تتراوح المواقع المخصصة للشركات لدى الوكالات المعروفة عادةً بين 15,000 و50,000 درهم أو أكثر. تبدأ مواقعنا ثنائية اللغة من 18,000 درهم لموقع حتى 8 صفحات، و35,000 درهم للمواقع المرتبطة بـ CRM وتتبّع العملاء، و70,000 درهم للمتاجر الإلكترونية والمواقع متعددة الأسواق الخليجية.",
+    "f7.q": "هل أحتاج إلى موقع ثنائي اللغة بالعربية والإنجليزية؟",
+    "f7.a": "نعم، إذا كان بعض عملائك يفضّلون العربية. العربية هي اللغة الرسمية في الإمارات، ويبحث كثير من المشترين في الخليج بالعربية أولًا. نسخة عربية مبنية بشكل صحيح وعلى رابط مستقل تساعدك على الظهور في عمليات البحث هذه، وتزيد احتمال تواصل الزوار الناطقين بالعربية معك.",
+    "f1.q": "كم يستغرق بناء موقع إلكتروني في دبي؟",
     "f1.a": "تُطلق معظم المشاريع خلال 6 إلى 10 أسابيع، ومواقع باقة الانطلاق خلال 4 أسابيع تقريبًا. نتفق على جدول زمني ثابت قبل أن نبدأ.",
     "f2.q": "هل تكتبون بالعربية فعلًا أم تترجمون؟",
     "f2.a": "يكتب كتّاب محتوى عرب كل صفحة ويراجعونها، ونصمّم تخطيط RTL مستقلًا بدلًا من عكس النسخة الإنجليزية.",
@@ -252,50 +258,16 @@
     "fm.ok.p": "سيتواصل معك أحد خبرائنا خلال يوم عمل واحد.",
 
     "ft.h": "لننمِّ أعمالك معًا.",
-    "ft.about": "وكالة تصميم مواقع ونمو في دبي، نبني للإمارات والخليج.",
+    "ft.about": "أوبن جروث شركة تصميم مواقع في دبي، تبني مواقع ثنائية اللغة للشركات في الإمارات ودول الخليج.",
+    "badge.clutch": "Clutch · 48 تقييمًا",
+    "badge.google": "Google · 112 تقييمًا",
+    "a11y.open": "فتح القائمة",
+    "a11y.close": "إغلاق القائمة",
+    "a11y.dark": "التبديل إلى الوضع الداكن",
+    "a11y.light": "التبديل إلى الوضع الفاتح",
     "ft.svc": "الخدمات", "ft.co": "الشركة", "ft.ct": "تواصل",
     "ft.loc": "دبي · أبوظبي · الرياض"
   };
-  var TITLE = {
-    en: document.title,
-    ar: "وكالة تصميم مواقع في دبي – مواقع تجلب لك العملاء | أوبن جروث"
-  };
-
-  var textNodes = document.querySelectorAll("[data-i18n]");
-  var phNodes = document.querySelectorAll("[data-i18n-ph]");
-  textNodes.forEach(function (el) { el.dataset.en = el.innerHTML; });
-  phNodes.forEach(function (el) { el.dataset.enPh = el.placeholder; });
-
-  var toggle = document.getElementById("langToggle");
-
-  function setLang(lang) {
-    var ar = lang === "ar";
-    var root = document.documentElement;
-    root.lang = ar ? "ar" : "en";
-    root.dir = ar ? "rtl" : "ltr";
-    textNodes.forEach(function (el) {
-      var key = el.dataset.i18n;
-      el.innerHTML = ar && AR[key] ? AR[key] : el.dataset.en;
-    });
-    phNodes.forEach(function (el) {
-      var key = el.dataset.i18nPh;
-      el.placeholder = ar && AR[key] ? AR[key] : el.dataset.enPh;
-    });
-    document.title = TITLE[ar ? "ar" : "en"];
-    toggle.textContent = ar ? "English" : "عربي";
-    toggle.setAttribute("aria-label", ar ? "Switch to English" : "التبديل إلى العربية");
-    try { localStorage.setItem("lang", root.lang); } catch (e) {}
-  }
-
-  toggle.addEventListener("click", function () {
-    var next = document.documentElement.lang === "ar" ? "en" : "ar";
-    setLang(next);
-    track("language_switch", { lang: next });
-  });
-
-  var initial = new URLSearchParams(location.search).get("lang");
-  if (!initial) { try { initial = localStorage.getItem("lang"); } catch (e) {} }
-  if (initial === "ar") setLang("ar");
 
   /* ---------- Squeeze carousel (vanilla port of 21st.dev @yura carousel-squeeze) ---------- */
   (function initSqueeze() {
@@ -309,11 +281,11 @@
 
     /* Concept designs in /work */
     var SLIDES = [
-      { slug: "forma", mark: "Forma Studio" },
-      { slug: "everwell", mark: "Everwell Clinic" },
-      { slug: "haven", mark: "Haven Properties" },
-      { slug: "waypoint", mark: "Waypoint Logistics" },
-      { slug: "north", mark: "North Advisory" }
+      { slug: "forma", mark: "Forma Studio", alt: "Forma Studio concept website for an architecture and interiors studio" },
+      { slug: "everwell", mark: "Everwell Clinic", alt: "Everwell Clinic concept website for a health and wellness clinic" },
+      { slug: "haven", mark: "Haven Properties", alt: "Haven Properties concept website for a real estate agency" },
+      { slug: "waypoint", mark: "Waypoint Logistics", alt: "Waypoint Logistics concept website for a logistics and transport company" },
+      { slug: "north", mark: "North Advisory", alt: "North Advisory concept website for a professional services firm" }
     ];
     var count = SLIDES.length;
     var SHARES = [-0.06, 0.61, 0.3, 0.15];    /* open card starts from a 16:9 block, then gives a little back */
@@ -341,12 +313,12 @@
       el.innerHTML = '<span class="sq__mark" aria-hidden="true">' + esc(s.mark) + "</span>";
       var img = new Image();
       img.className = "sq__pic";
-      img.alt = "";
-      img.draggable = false;
+            img.draggable = false;
       img.decoding = "async";
       img.loading = "lazy";
       img.onerror = function () { img.remove(); };
-      img.src = "work/" + s.slug + ".webp";
+      img.src = "/work/" + s.slug + ".webp";
+      img.alt = s.alt;
       el.insertBefore(img, el.querySelector(".sq__mark"));
       var card = { slide: slide, el: el };
       el.addEventListener("mousemove", function () {
@@ -502,8 +474,7 @@
       return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) || v.replace(/\D/g, "").length >= 8;
     }
   };
-  function tr(key, en) { return document.documentElement.lang === "ar" && AR[key] ? AR[key] : en; }
-  function fieldOf(name) { return form.querySelector("[name=" + name + "]").closest(".field"); }
+    function fieldOf(name) { return form.querySelector("[name=" + name + "]").closest(".field"); }
 
   function showError(name, invalid) {
     var field = fieldOf(name);

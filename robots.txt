@@ -1,0 +1,5 @@
+# Search engines and AI search crawlers (OAI-SearchBot, Claude-SearchBot, PerplexityBot) are all welcome.
+User-agent: *
+Allow: /
+
+Sitemap: https://open-growth-site-psi.vercel.app/sitemap.xml
