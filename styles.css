@@ -279,7 +279,6 @@ body { transition: background-color .3s, color .3s; }
 /* Squeeze carousel: one open panel, the rest squeezed into slats (port of 21st.dev carousel-squeeze) */
 .sq {
   container-type: inline-size;
-  margin-bottom: 64px;
   --sq-h: clamp(120px, 30cqi, 340px);
   --sq-gap: 16px; --sq-slat: 8px; --sq-slat-gap: 8px; --sq-slats: 3;
   --sq-radius: 6px; --sq-ms: 1000ms; --sq-ease: cubic-bezier(.16, 1, .3, 1);
