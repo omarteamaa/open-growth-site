@@ -12,6 +12,7 @@
   <meta property="og:description" content="Fast, bilingual websites for ambitious brands across the UAE and GCC.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#090909">
+  <meta name="color-scheme" content="dark light">
   <script>document.documentElement.classList.add("js")</script>
   <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 
@@ -67,6 +68,7 @@
       </div>
     </div>
     <div class="mobile-menu" id="mobileMenu" hidden>
+      <a class="btn btn--primary btn--block" href="#contact" data-track="cta_mobile_menu" data-i18n="hero.cta1">Get my free website audit</a>
       <a href="#work" data-i18n="nav.work">Work</a>
       <a href="#services" data-i18n="nav.services">Services</a>
       <a href="#process" data-i18n="nav.process">Process</a>
@@ -144,11 +146,14 @@
       </div>
 
       <!-- Client logos (swap for real logo SVGs) -->
-      <div class="logos" aria-label="Selected clients">
+      <div class="logos-wrap">
+      <div class="logos" role="group" aria-label="Selected clients">
         <div class="logos__track">
           <span>Al Noor Group</span><span>Sahara Living</span><span>Qamar Clinics</span><span>Falcon Logistics</span><span>Dune &amp; Co.</span><span>Marina Estates</span><span>Oud House</span><span>Zayna Retail</span>
           <span aria-hidden="true">Al Noor Group</span><span aria-hidden="true">Sahara Living</span><span aria-hidden="true">Qamar Clinics</span><span aria-hidden="true">Falcon Logistics</span><span aria-hidden="true">Dune &amp; Co.</span><span aria-hidden="true">Marina Estates</span><span aria-hidden="true">Oud House</span><span aria-hidden="true">Zayna Retail</span>
         </div>
+      </div>
+      <button class="motion-toggle" type="button" id="logosToggle" aria-label="Pause logo animation" aria-pressed="false"><svg class="i-pause" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="3.5" y="2.5" width="3" height="11" rx="1"/><rect x="9.5" y="2.5" width="3" height="11" rx="1"/></svg><svg class="i-play" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4.5 2.8v10.4a.8.8 0 0 0 1.2.7l8.3-5.2a.8.8 0 0 0 0-1.4L5.7 2.1a.8.8 0 0 0-1.2.7Z"/></svg></button>
       </div>
     </section>
 
@@ -164,6 +169,7 @@
              Panels show the concept designs in /work. -->
         <div class="sq reveal" id="squeeze" aria-roledescription="carousel">
           <div class="sq__controls">
+            <button class="sq__arrow sq__play" type="button" id="sqPlay" aria-label="Pause slideshow" aria-pressed="false"><svg class="i-pause" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="3.5" y="2.5" width="3" height="11" rx="1"/><rect x="9.5" y="2.5" width="3" height="11" rx="1"/></svg><svg class="i-play" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4.5 2.8v10.4a.8.8 0 0 0 1.2.7l8.3-5.2a.8.8 0 0 0 0-1.4L5.7 2.1a.8.8 0 0 0-1.2.7Z"/></svg></button>
             <button class="sq__arrow" type="button" data-dir="-1" aria-label="Previous website"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M9.6 2.6 5.1 7.1h9.1v1.8H5.1l4.5 4.5-1.2 1.2-6-6L1.8 8l.6-.6 6-6 1.2 1.2Z"/></svg></button>
             <button class="sq__arrow" type="button" data-dir="1" aria-label="Next website"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M6.4 2.6l4.5 4.5H1.8v1.8h9.1l-4.5 4.5 1.2 1.2 6-6 .6-.6-.6-.6-6-6-1.2 1.2Z"/></svg></button>
           </div>
@@ -184,7 +190,7 @@
           <article class="case case--wide reveal">
             <div class="case__metric">+318%</div>
             <div class="case__metric-label" data-i18n="case1.metric">inbound enquiries in 6 months</div>
-            <div class="case__meta"><span>Marina Estates</span><span data-i18n="case1.tag">Real estate · Dubai</span></div>
+            <div class="case__meta"><h3 class="case__client">Marina Estates</h3><span data-i18n="case1.tag">Real estate · Dubai</span></div>
             <p data-i18n="case1.body">New bilingual property site with off-plan landing pages, WhatsApp lead routing and CRM sync. Cost per lead fell from AED 410 to AED 96.</p>
             <a class="link" href="#contact" data-i18n="case.cta">Get results like this →</a>
           </article>
@@ -192,21 +198,21 @@
           <article class="case reveal">
             <div class="case__metric">2.6×</div>
             <div class="case__metric-label" data-i18n="case2.metric">online bookings</div>
-            <div class="case__meta"><span>Qamar Clinics</span><span data-i18n="case2.tag">Healthcare · Abu Dhabi</span></div>
+            <div class="case__meta"><h3 class="case__client">Qamar Clinics</h3><span data-i18n="case2.tag">Healthcare · Abu Dhabi</span></div>
             <p data-i18n="case2.body">Arabic-first booking flow and doctor profiles. Mobile load time cut from 6.1s to 1.2s.</p>
           </article>
 
           <article class="case reveal">
             <div class="case__metric">#1</div>
             <div class="case__metric-label" data-i18n="case3.metric">Google rank for 14 key terms</div>
-            <div class="case__meta"><span>Falcon Logistics</span><span data-i18n="case3.tag">B2B · Jebel Ali</span></div>
+            <div class="case__meta"><h3 class="case__client">Falcon Logistics</h3><span data-i18n="case3.tag">B2B · Jebel Ali</span></div>
             <p data-i18n="case3.body">Rebuilt service pages around search intent across UAE and KSA. Organic traffic up 190%.</p>
           </article>
 
           <article class="case reveal">
             <div class="case__metric">+41%</div>
             <div class="case__metric-label" data-i18n="case4.metric">e-commerce revenue</div>
-            <div class="case__meta"><span>Oud House</span><span data-i18n="case4.tag">Retail · GCC</span></div>
+            <div class="case__meta"><h3 class="case__client">Oud House</h3><span data-i18n="case4.tag">Retail · GCC</span></div>
             <p data-i18n="case4.body">Faster Shopify storefront, GCC-wide shipping logic and a checkout that converts 4.8% of visitors.</p>
           </article>
         </div>
@@ -391,8 +397,10 @@
 
         <!-- Replace action with your form endpoint (Formspree, HubSpot, etc.) -->
         <form class="form reveal" id="leadForm" action="#" method="post" novalidate>
+          <p class="micro muted" data-i18n="fm.req">All four fields are required.</p>
+          <p class="form__fail" role="alert" tabindex="-1" hidden data-i18n="fm.fail">We couldn't send your request. Check your connection and try again, or message us on WhatsApp.</p>
           <div class="field">
-            <label for="need" data-i18n="fm.need">What do you need?</label>
+            <label for="need"><span data-i18n="fm.need">What do you need?</span> <span class="req" aria-hidden="true">*</span></label>
             <select id="need" name="need" required>
               <option value="" data-i18n="fm.choose">Choose one</option>
               <option value="new-website" data-i18n="fm.need1">A new website</option>
@@ -400,34 +408,40 @@
               <option value="seo-growth" data-i18n="fm.need3">More leads from my current site</option>
               <option value="ecommerce" data-i18n="fm.need4">E-commerce store</option>
             </select>
+            <p class="field__error" id="needError" hidden data-i18n="fm.err.need">Choose what you need so we can tailor the audit.</p>
           </div>
           <fieldset class="field">
-            <legend data-i18n="fm.budget">Budget band</legend>
+            <legend><span data-i18n="fm.budget">Budget band</span> <span class="req" aria-hidden="true">*</span></legend>
             <div class="chips">
               <label class="chip"><input type="radio" name="budget" value="18-35k" required><span>AED 18–35k</span></label>
               <label class="chip"><input type="radio" name="budget" value="35-70k"><span>AED 35–70k</span></label>
               <label class="chip"><input type="radio" name="budget" value="70k+"><span>AED 70k+</span></label>
               <label class="chip"><input type="radio" name="budget" value="unsure"><span data-i18n="fm.unsure">Not sure yet</span></label>
             </div>
+            <p class="field__error" id="budgetError" hidden data-i18n="fm.err.budget">Pick a budget band, or choose "Not sure yet".</p>
           </fieldset>
           <div class="field">
-            <label for="timeline" data-i18n="fm.time">Timeline</label>
+            <label for="timeline"><span data-i18n="fm.time">Timeline</span> <span class="req" aria-hidden="true">*</span></label>
             <select id="timeline" name="timeline" required>
               <option value="" data-i18n="fm.choose">Choose one</option>
               <option value="asap" data-i18n="fm.t1">As soon as possible</option>
               <option value="1-3m" data-i18n="fm.t2">In 1–3 months</option>
               <option value="exploring" data-i18n="fm.t3">Just exploring</option>
             </select>
+            <p class="field__error" id="timelineError" hidden data-i18n="fm.err.time">Choose a timeline so we can plan the work.</p>
           </div>
           <div class="field">
-            <label for="contactField" data-i18n="fm.contact">Email or WhatsApp number</label>
-            <input id="contactField" name="contact" type="text" autocomplete="email" required data-i18n-ph="fm.ph" placeholder="you@company.ae or +971…">
+            <label for="contactField"><span data-i18n="fm.contact">Email or WhatsApp number</span> <span class="req" aria-hidden="true">*</span></label>
+            <input id="contactField" name="contact" type="text" autocomplete="email" autocapitalize="off" spellcheck="false" required aria-describedby="contactHelp" data-describedby="contactHelp" data-i18n-ph="fm.ph" placeholder="you@company.ae or +971…">
+            <p class="field__help micro muted" id="contactHelp" data-i18n="fm.help">We reply on whichever you give us, usually the same day.</p>
+            <p class="field__error" id="contactError" hidden data-i18n="fm.err.contact">Enter an email like you@company.ae or a phone number with at least 8 digits.</p>
           </div>
-          <button class="btn btn--primary btn--block" type="submit" data-track="form_submit" data-i18n="fm.submit">Get my free audit</button>
+          <button class="btn btn--primary btn--block" type="submit" data-track="form_submit"><span class="btn__spin" aria-hidden="true"></span><span data-i18n="fm.submit">Get my free audit</span></button>
           <p class="micro muted" data-i18n="fm.note">No spam, no sales pressure. We only use your details to reply.</p>
-          <div class="form__ok" role="status" hidden>
+          <div class="form__ok" role="status" tabindex="-1" hidden>
             <strong data-i18n="fm.ok.h">Thanks. We're on it.</strong>
             <span data-i18n="fm.ok.p">A strategist will be in touch within one business day.</span>
+            <button class="btn btn--secondary btn--sm" type="button" id="formReset" data-i18n="fm.again">Send another request</button>
           </div>
         </form>
       </div>

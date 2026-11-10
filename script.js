@@ -22,10 +22,40 @@
   var menu = document.getElementById("mobileMenu");
   function setMenu(open) {
     burger.setAttribute("aria-expanded", String(open));
+    burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
     menu.hidden = !open;
   }
   burger.addEventListener("click", function () { setMenu(menu.hidden); });
   menu.addEventListener("click", function (e) { if (e.target.closest("a")) setMenu(false); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && !menu.hidden) { setMenu(false); burger.focus(); }
+  });
+
+  /* ---------- Nav: highlight the section in view ---------- */
+  var spyLinks = Array.prototype.slice.call(document.querySelectorAll('.nav__links a[href^="#"]'));
+  if ("IntersectionObserver" in window) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        spyLinks.forEach(function (a) {
+          if (a.getAttribute("href") === "#" + entry.target.id) a.setAttribute("aria-current", "location");
+          else a.removeAttribute("aria-current");
+        });
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    spyLinks.forEach(function (a) {
+      var section = document.querySelector(a.getAttribute("href"));
+      if (section) spy.observe(section);
+    });
+  }
+
+  /* ---------- Logo marquee pause ---------- */
+  var logosToggle = document.getElementById("logosToggle");
+  logosToggle.addEventListener("click", function () {
+    var paused = logosToggle.getAttribute("aria-pressed") !== "true";
+    logosToggle.setAttribute("aria-pressed", String(paused));
+    document.querySelector(".logos").classList.toggle("is-paused", paused);
+  });
 
   /* ---------- Scroll reveal with per-group stagger ---------- */
   var reveals = document.querySelectorAll(".reveal");
@@ -208,6 +238,15 @@
     "fm.contact": "البريد الإلكتروني أو رقم واتساب",
     "fm.ph": "you@company.ae أو ‎+971…",
     "fm.submit": "احصل على تدقيقي المجاني",
+    "fm.sending": "جارٍ الإرسال…",
+    "fm.req": "جميع الحقول الأربعة مطلوبة.",
+    "fm.err.need": "اختر ما تحتاجه لنخصّص التدقيق لك.",
+    "fm.err.budget": "اختر نطاق الميزانية، أو اختر «لست متأكدًا بعد».",
+    "fm.err.time": "اختر الإطار الزمني لنخطط للعمل.",
+    "fm.err.contact": "أدخل بريدًا إلكترونيًا مثل you@company.ae أو رقم هاتف من 8 أرقام على الأقل.",
+    "fm.help": "نرد عليك عبر الوسيلة التي تذكرها، وغالبًا في اليوم نفسه.",
+    "fm.fail": "تعذّر إرسال طلبك. تحقق من اتصالك وحاول مرة أخرى، أو راسلنا عبر واتساب.",
+    "fm.again": "إرسال طلب آخر",
     "fm.note": "بلا رسائل مزعجة ولا ضغط بيعي. نستخدم بياناتك للرد عليك فقط.",
     "fm.ok.h": "شكرًا لك، استلمنا طلبك.",
     "fm.ok.p": "سيتواصل معك أحد خبرائنا خلال يوم عمل واحد.",
@@ -264,6 +303,9 @@
     if (!root) return;
     var stripEl = root.querySelector(".sq__strip");
     var copies = Array.prototype.slice.call(root.querySelectorAll(".sq__copy"));
+    var panelEl = document.getElementById("sqPanel");
+    var playBtn = document.getElementById("sqPlay");
+    var userPaused = false;
 
     /* Concept designs in /work */
     var SLIDES = [
@@ -302,6 +344,7 @@
       img.alt = "";
       img.draggable = false;
       img.decoding = "async";
+      img.loading = "lazy";
       img.onerror = function () { img.remove(); };
       img.src = "work/" + s.slug + ".webp";
       el.insertBefore(img, el.querySelector(".sq__mark"));
@@ -366,8 +409,10 @@
       });
     }
 
-    function step(by) {
+    function step(by, auto) {
       if (count < 2 || !by) return;
+      /* announce slide changes the visitor asked for, not autoplay ticks */
+      panelEl.setAttribute("aria-live", auto ? "off" : "polite");
       clearTimeout(settleTimer);
       var hadFocus = stripEl.contains(document.activeElement);
       if (by > 0) {
@@ -402,7 +447,13 @@
       schedulePlay();
     }
 
-    root.querySelectorAll(".sq__arrow").forEach(function (b) {
+    playBtn.hidden = reduceMotion;
+    playBtn.addEventListener("click", function () {
+      userPaused = !userPaused;
+      playBtn.setAttribute("aria-pressed", String(userPaused));
+      schedulePlay();
+    });
+    root.querySelectorAll(".sq__arrow[data-dir]").forEach(function (b) {
       b.addEventListener("click", function () { step(Number(b.dataset.dir)); });
     });
     stripEl.addEventListener("keydown", function (e) {
@@ -415,8 +466,8 @@
     /* Autoplay: one step every 6s, paused on hover/focus, off screen, or with reduced motion */
     function schedulePlay() {
       clearTimeout(playTimer);
-      if (paused || reduceMotion || !inView || document.hidden) return;
-      playTimer = setTimeout(function () { step(1); }, 6000);
+      if (userPaused || paused || reduceMotion || !inView || document.hidden) return;
+      playTimer = setTimeout(function () { step(1, true); }, 6000);
     }
     root.addEventListener("mouseenter", function () { paused = true; schedulePlay(); });
     root.addEventListener("mouseleave", function () { paused = false; hover = -1; paint(); schedulePlay(); });
@@ -435,32 +486,105 @@
     still(paint);
   })();
 
-  /* ---------- Lead form ---------- */
+  /* ---------- Lead form: validate on blur, errors beside fields, loading then success/failure ---------- */
   var form = document.getElementById("leadForm");
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    var ok = true;
-    [["need", form.need.value], ["budget", form.querySelector("input[name=budget]:checked")], ["timeline", form.timeline.value], ["contact", form.contact.value.trim().length > 4]]
-      .forEach(function (pair) {
-        var field = form.querySelector("[name=" + pair[0] + "]").closest(".field");
-        field.classList.toggle("is-invalid", !pair[1]);
-        if (!pair[1]) ok = false;
-      });
-    if (!ok) { form.querySelector(".is-invalid select, .is-invalid input").focus(); return; }
-
-    var data = Object.fromEntries(new FormData(form).entries());
-    track("generate_lead", { need: data.need, budget: data.budget, timeline: data.timeline });
-
-    /* Send to your backend when the form has a real action URL */
-    var action = form.getAttribute("action");
-    if (action && action !== "#") {
-      fetch(action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } }).catch(function () {});
+  var submitBtn = form.querySelector("button[type=submit]");
+  var submitLabel = submitBtn.querySelector("[data-i18n]");
+  var okPanel = form.querySelector(".form__ok");
+  var failMsg = form.querySelector(".form__fail");
+  var touched = {};
+  var CHECKS = {
+    need: function () { return !!form.need.value; },
+    budget: function () { return !!form.querySelector("input[name=budget]:checked"); },
+    timeline: function () { return !!form.timeline.value; },
+    contact: function () {
+      var v = form.contact.value.trim();
+      return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) || v.replace(/\D/g, "").length >= 8;
     }
-    form.querySelector(".form__ok").hidden = false;
+  };
+  function tr(key, en) { return document.documentElement.lang === "ar" && AR[key] ? AR[key] : en; }
+  function fieldOf(name) { return form.querySelector("[name=" + name + "]").closest(".field"); }
+
+  function showError(name, invalid) {
+    var field = fieldOf(name);
+    var err = field.querySelector(".field__error");
+    var targets = field.tagName === "FIELDSET" ? [field] : Array.prototype.slice.call(field.querySelectorAll("select, input"));
+    field.classList.toggle("is-invalid", invalid);
+    err.hidden = !invalid;
+    targets.forEach(function (el) {
+      var base = el.getAttribute("data-describedby") || "";
+      if (invalid) {
+        if (el.tagName !== "FIELDSET") el.setAttribute("aria-invalid", "true");
+        el.setAttribute("aria-describedby", (base + " " + err.id).trim());
+      } else {
+        el.removeAttribute("aria-invalid");
+        if (base) el.setAttribute("aria-describedby", base);
+        else el.removeAttribute("aria-describedby");
+      }
+    });
+  }
+  function validate(name) {
+    var ok = CHECKS[name]();
+    showError(name, !ok);
+    return ok;
+  }
+
+  /* Check a field once the visitor leaves it, then keep its message in sync as they fix it */
+  form.addEventListener("focusout", function (e) {
+    var name = e.target.name;
+    if (!CHECKS[name] || name === "budget") return;
+    if (!e.target.value.trim()) return;
+    touched[name] = true;
+    validate(name);
   });
   form.addEventListener("change", function (e) {
-    var field = e.target.closest(".field");
-    if (field) field.classList.remove("is-invalid");
+    var name = e.target.name;
+    if (CHECKS[name] && (touched[name] || fieldOf(name).classList.contains("is-invalid"))) validate(name);
+  });
+  form.addEventListener("input", function (e) {
+    if (e.target.name === "contact" && fieldOf("contact").classList.contains("is-invalid") && CHECKS.contact()) showError("contact", false);
+  });
+
+  function setLoading(on) {
+    submitBtn.disabled = on;
+    submitBtn.classList.toggle("is-loading", on);
+    form.setAttribute("aria-busy", String(on));
+    submitLabel.textContent = on ? tr("fm.sending", "Sending…") : tr("fm.submit", "Get my free audit");
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    failMsg.hidden = true;
+    var firstBad = null;
+    Object.keys(CHECKS).forEach(function (name) {
+      if (!validate(name) && !firstBad) firstBad = name;
+    });
+    if (firstBad) { form.querySelector("[name=" + firstBad + "]").focus(); return; }
+
+    var data = Object.fromEntries(new FormData(form).entries());
+    var action = form.getAttribute("action");
+    setLoading(true);
+    /* Posts to the form's action once it points at a real endpoint (Formspree, HubSpot, etc.) */
+    var send = action && action !== "#"
+      ? fetch(action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
+          .then(function (res) { if (!res.ok) throw new Error("HTTP " + res.status); })
+      : Promise.resolve();
+    send.then(function () {
+      track("generate_lead", { need: data.need, budget: data.budget, timeline: data.timeline });
+      okPanel.hidden = false;
+      okPanel.focus();
+    }).catch(function () {
+      failMsg.hidden = false;
+      failMsg.focus();
+    }).then(function () { setLoading(false); });
+  });
+
+  document.getElementById("formReset").addEventListener("click", function () {
+    form.reset();
+    touched = {};
+    Object.keys(CHECKS).forEach(function (name) { showError(name, false); });
+    okPanel.hidden = true;
+    form.need.focus();
   });
 
   document.getElementById("year").textContent = new Date().getFullYear();
