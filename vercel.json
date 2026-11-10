@@ -43,6 +43,6 @@
       ]
     }
   ],
-  "buildCommand": "node tools/build-ar.mjs",
-  "outputDirectory": "."
+  "buildCommand": "node tools/build.mjs",
+  "outputDirectory": "dist"
 }
