@@ -32,9 +32,14 @@
   <script>document.documentElement.classList.add("js")</script>
   <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 
+  <!-- Fonts are self-hosted (no render-blocking third-party CSS) -->
+  <link rel="preload" href="/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- Analytics: put a GA4 measurement ID here (e.g. G-XXXXXXX) to start tracking; empty = no tracking -->
+  <meta name="ga4-id" content="">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600&family=Inter:wght@400;500;700&family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
 
   <script type="application/ld+json">
@@ -246,15 +251,16 @@
     <section class="hero">
       <div class="hero__glow" aria-hidden="true"></div>
       <div class="wrap">
-        <p class="eyebrow reveal"><span class="dot"></span><span data-i18n="hero.eyebrow">استوديو تصميم مواقع ونمو · دبي، الإمارات</span></p>
+        <!-- First-screen content is never hidden by scroll reveals: the H1 is the LCP element -->
+        <p class="eyebrow"><span class="dot"></span><span data-i18n="hero.eyebrow">استوديو تصميم مواقع ونمو · دبي، الإمارات</span></p>
 
-        <h1 class="display-xxl reveal" data-i18n="hero.h1">تصميم مواقع في دبي يجلب لك العملاء.</h1>
+        <h1 class="display-xxl" data-i18n="hero.h1">تصميم مواقع في دبي يجلب لك العملاء.</h1>
 
         <div class="hero__row">
           <div class="hero__copy">
-            <p class="subhead reveal" data-i18n="hero.sub">أوبن جروث شركة تصميم مواقع في دبي تبني مواقع سريعة ثنائية اللغة بالعربية والإنجليزية للشركات الخدمية في الإمارات ودول الخليج. نقيس عملنا بعدد الاستفسارات والإيرادات، لا بالإعجابات.</p>
+            <p class="subhead" data-i18n="hero.sub">أوبن جروث شركة تصميم مواقع في دبي تبني مواقع سريعة ثنائية اللغة بالعربية والإنجليزية للشركات الخدمية في الإمارات ودول الخليج. نقيس عملنا بعدد الاستفسارات والإيرادات، لا بالإعجابات.</p>
 
-            <div class="hero__ctas reveal">
+            <div class="hero__ctas">
               <a class="btn btn--primary" href="#contact" data-track="cta_hero" data-i18n="hero.cta1">احصل على تدقيق مجاني لموقعك</a>
               <a class="btn btn--secondary" href="https://wa.me/971500000000" target="_blank" rel="noopener" data-track="whatsapp_hero">
                 <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.3-.2-.5-.3Z"/></svg>
@@ -262,23 +268,22 @@
               </a>
             </div>
 
-            <!-- Layered proof: review badges + partner badges (replace with your real ratings) -->
-            <ul class="badges reveal" aria-label="التقييمات والشركاء">
-              <li class="badge"><span class="badge__score">4.9</span><span class="stars" aria-hidden="true">★★★★★</span><span class="badge__label" data-i18n="badge.clutch">Clutch · 48 تقييمًا</span></li>
-              <li class="badge"><span class="badge__score">5.0</span><span class="stars" aria-hidden="true">★★★★★</span><span class="badge__label" data-i18n="badge.google">Google · 112 تقييمًا</span></li>
-              <li class="badge badge--partner">Google Partner</li>
-              <li class="badge badge--partner">Meta Business Partner</li>
-              <li class="badge badge--partner">HubSpot Partner</li>
+            <!-- Promises we can keep from day one. Add real review/partner badges here once you have them. -->
+            <ul class="badges" aria-label="ما يتضمنه كل مشروع">
+              <li class="badge" data-i18n="promise.1">عرض سعر ثابت قبل أن نبدأ</li>
+              <li class="badge" data-i18n="promise.2">الموقع وجميع الحسابات ملكك</li>
+              <li class="badge" data-i18n="promise.3">تقرير شهري عن الاستفسارات</li>
             </ul>
           </div>
 
-          <!-- Product mockup tile -->
-          <div class="mock reveal" aria-hidden="true">
-            <div class="mock__bar"><i></i><i></i><i></i><span>dashboard.opengrowth.ae</span></div>
+          <!-- Illustration of the client report. Clearly labelled as an example: no client data. -->
+          <figure class="mock-wrap">
+          <div class="mock" aria-hidden="true">
+            <div class="mock__bar"><i></i><i></i><i></i><span data-i18n="mock.bar">تقرير نموذجي</span></div>
             <div class="mock__body">
-              <div class="mock__label" data-i18n="mock.label">العملاء المحتملون المؤهَّلون · آخر 90 يومًا</div>
-              <div class="mock__value"><span class="count" data-to="212">212</span>%</div>
-              <div class="mock__delta">▲ <span data-i18n="mock.delta">مقارنةً بالموقع السابق</span></div>
+              <div class="mock__label" data-i18n="mock.label">استفسارات الموقع · هذا الشهر</div>
+              <div class="mock__value"><span class="count" data-to="48">48</span></div>
+              <div class="mock__delta">▲ <span data-i18n="mock.delta">12 أكثر من الشهر الماضي</span></div>
               <svg class="mock__chart" viewBox="0 0 300 110" preserveAspectRatio="none">
                 <defs>
                   <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
@@ -296,26 +301,17 @@
               </div>
             </div>
           </div>
+          <figcaption class="mock__caption micro muted" data-i18n="mock.cap">مثال على التقرير الشهري الذي يحصل عليه كل عميل. الأرقام توضيحية.</figcaption>
+          </figure>
         </div>
 
-        <!-- Hard numbers. Final values are in the HTML so crawlers never read "0+" -->
-        <dl class="stats reveal">
-          <div><dt data-i18n="stats.1">موقعًا تم إطلاقه</dt><dd><span class="count" data-to="140">140</span>+</dd></div>
-          <div><dt data-i18n="stats.2">متوسط زيادة العملاء المحتملين</dt><dd><span class="count" data-to="3.2" data-dec="1">3.2</span>×</dd></div>
-          <div><dt data-i18n="stats.3">سنوات في الإمارات</dt><dd><span class="count" data-to="9">9</span></dd></div>
-          <div><dt data-i18n="stats.4">متوسط التحميل على الجوال</dt><dd>&lt;<span class="count" data-to="1.5" data-dec="1">1.5</span>s</dd></div>
+        <!-- Facts about the offer (not track-record claims). Final values are in the HTML so crawlers never read "0" -->
+        <dl class="stats">
+          <div><dt data-i18n="stats.1">مدة إنجاز التدقيق المجاني</dt><dd><span class="count" data-to="48">48</span>h</dd></div>
+          <div><dt data-i18n="stats.2">لغتان في كل موقع</dt><dd>EN + AR</dd></div>
+          <div><dt data-i18n="stats.3">درجة PageSpeed التي نستهدفها</dt><dd><span class="count" data-to="90">90</span>+</dd></div>
+          <div><dt data-i18n="stats.4">تبدأ أسعار المواقع من</dt><dd>AED 18k</dd></div>
         </dl>
-      </div>
-
-      <!-- Client logos (swap for real logo SVGs) -->
-      <div class="logos-wrap">
-      <div class="logos" role="group" aria-label="عملاء مختارون">
-        <div class="logos__track">
-          <span>Al Noor Group</span><span>Sahara Living</span><span>Qamar Clinics</span><span>Falcon Logistics</span><span>Dune &amp; Co.</span><span>Marina Estates</span><span>Oud House</span><span>Zayna Retail</span>
-          <span aria-hidden="true">Al Noor Group</span><span aria-hidden="true">Sahara Living</span><span aria-hidden="true">Qamar Clinics</span><span aria-hidden="true">Falcon Logistics</span><span aria-hidden="true">Dune &amp; Co.</span><span aria-hidden="true">Marina Estates</span><span aria-hidden="true">Oud House</span><span aria-hidden="true">Zayna Retail</span>
-        </div>
-      </div>
-      <button class="motion-toggle" type="button" id="logosToggle" aria-label="إيقاف حركة الشعارات" aria-pressed="false"><svg class="i-pause" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="3.5" y="2.5" width="3" height="11" rx="1"/><rect x="9.5" y="2.5" width="3" height="11" rx="1"/></svg><svg class="i-play" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4.5 2.8v10.4a.8.8 0 0 0 1.2.7l8.3-5.2a.8.8 0 0 0 0-1.4L5.7 2.1a.8.8 0 0 0-1.2.7Z"/></svg></button>
       </div>
     </section>
 
@@ -323,12 +319,12 @@
     <section class="section" id="work">
       <div class="wrap">
         <div class="section__head">
-          <p class="eyebrow reveal" data-i18n="work.eyebrow">أعمال مختارة</p>
-          <h2 class="display-lg reveal" data-i18n="work.h2">لكل مشروع رقمٌ يثبت نتيجته.</h2>
+          <p class="eyebrow reveal" data-i18n="work.eyebrow">تصاميم مفاهيمية</p>
+          <h2 class="display-lg reveal" data-i18n="work.h2">مواقع مصممة لطريقة شراء العملاء في الخليج.</h2>
         </div>
 
-        <!-- Recent launches: squeeze carousel (vanilla port of 21st.dev @yura carousel-squeeze).
-             Panels show the concept designs in /work. -->
+        <!-- Concept work: squeeze carousel (vanilla port of 21st.dev @yura carousel-squeeze).
+             Add real client case studies (with measured results and dates) below once you have them. -->
         <div class="sq reveal" id="squeeze" aria-roledescription="carousel">
           <div class="sq__controls">
             <button class="sq__arrow sq__play" type="button" id="sqPlay" aria-label="إيقاف العرض التلقائي" aria-pressed="false"><svg class="i-pause" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="3.5" y="2.5" width="3" height="11" rx="1"/><rect x="9.5" y="2.5" width="3" height="11" rx="1"/></svg><svg class="i-play" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4.5 2.8v10.4a.8.8 0 0 0 1.2.7l8.3-5.2a.8.8 0 0 0 0-1.4L5.7 2.1a.8.8 0 0 0-1.2.7Z"/></svg></button>
@@ -348,36 +344,6 @@
           <p class="sq__note micro muted" data-i18n="sq.note">هذه تصاميم مفاهيمية وليست مشاريع لعملاء.</p>
         </div>
 
-        <div class="cases">
-          <article class="case case--wide reveal">
-            <div class="case__metric">+318%</div>
-            <div class="case__metric-label" data-i18n="case1.metric">زيادة في الاستفسارات خلال 6 أشهر</div>
-            <div class="case__meta"><h3 class="case__client">Marina Estates</h3><span data-i18n="case1.tag">عقارات · دبي</span></div>
-            <p data-i18n="case1.body">موقع عقاري جديد ثنائي اللغة مع صفحات هبوط لمشاريع على الخارطة، وتوجيه العملاء عبر واتساب وربط مع نظام CRM. انخفضت تكلفة العميل المحتمل من 410 إلى 96 درهمًا.</p>
-            <a class="link" href="#contact" data-i18n="case.cta">احصل على نتائج مماثلة ←</a>
-          </article>
-
-          <article class="case reveal">
-            <div class="case__metric">2.6×</div>
-            <div class="case__metric-label" data-i18n="case2.metric">زيادة في الحجوزات الإلكترونية</div>
-            <div class="case__meta"><h3 class="case__client">Qamar Clinics</h3><span data-i18n="case2.tag">الرعاية الصحية · أبوظبي</span></div>
-            <p data-i18n="case2.body">مسار حجز بالعربية أولًا وصفحات تعريفية للأطباء. انخفض زمن التحميل على الجوال من 6.1 إلى 1.2 ثانية.</p>
-          </article>
-
-          <article class="case reveal">
-            <div class="case__metric">#1</div>
-            <div class="case__metric-label" data-i18n="case3.metric">الترتيب الأول في Google لـ 14 كلمة رئيسية</div>
-            <div class="case__meta"><h3 class="case__client">Falcon Logistics</h3><span data-i18n="case3.tag">قطاع الأعمال · جبل علي</span></div>
-            <p data-i18n="case3.body">أعدنا بناء صفحات الخدمات وفق نية البحث في الإمارات والسعودية. ارتفعت الزيارات العضوية بنسبة 190%.</p>
-          </article>
-
-          <article class="case reveal">
-            <div class="case__metric">+41%</div>
-            <div class="case__metric-label" data-i18n="case4.metric">زيادة في إيرادات المتجر الإلكتروني</div>
-            <div class="case__meta"><h3 class="case__client">Oud House</h3><span data-i18n="case4.tag">تجزئة · الخليج</span></div>
-            <p data-i18n="case4.body">واجهة Shopify أسرع، ومنطق شحن يغطي دول الخليج، وصفحة دفع تحوّل 4.8% من الزوار.</p>
-          </article>
-        </div>
       </div>
     </section>
 
@@ -392,12 +358,12 @@
           <div class="card reveal">
             <span class="card__num">01</span>
             <h3 class="headline" data-i18n="svc1.h">تصميم وتطوير المواقع</h3>
-            <p data-i18n="svc1.p">مواقع تركّز على التحويل عبر Webflow أو Framer أو WordPress أو برمجة مخصصة، مصمّمة للجوال أولًا وتحقق أكثر من 90 في PageSpeed.</p>
+            <p data-i18n="svc1.p">مواقع تركّز على التحويل عبر Webflow أو Framer أو WordPress أو برمجة مخصصة، مصمّمة للجوال أولًا ونستهدف فيها 90+ في PageSpeed.</p>
           </div>
           <div class="card reveal">
             <span class="card__num">02</span>
             <h3 class="headline" data-i18n="svc2.h">تصميم مواقع عربية وثنائية اللغة</h3>
-            <p data-i18n="svc2.p">تخطيطات صحيحة من اليمين إلى اليسار، ومحتوى وخطوط عربية أصيلة. لا نكتفي بترجمة الصفحة الإنجليزية.</p>
+            <p data-i18n="svc2.p">تخطيطات صحيحة من اليمين إلى اليسار، ومحتوى عربي مكتوب لقرّاء العربية. لا نكتفي بترجمة الصفحة الإنجليزية.</p>
           </div>
           <div class="card reveal">
             <span class="card__num">03</span>
@@ -420,7 +386,7 @@
           <div class="spotlight__copy">
             <p class="eyebrow eyebrow--light" data-i18n="audit.eyebrow">مجاني · دون أي التزام · خلال 48 ساعة</p>
             <h2 class="display-md" data-i18n="audit.h2">احصل على تدقيق مجاني لموقعك وفرص نموه.</h2>
-            <p class="body-lg" data-i18n="audit.p">يراجع خبراؤنا موقعك الحالي ويرسلون لك فيديو قصيرًا وقائمة إصلاحات مرتبة حسب الأولوية. هي لك في كل الأحوال.</p>
+            <p class="body-lg" data-i18n="audit.p">نراجع موقعك الحالي ونرسل لك فيديو قصيرًا وقائمة إصلاحات مرتبة حسب الأولوية. هي لك في كل الأحوال.</p>
             <a class="btn btn--primary" href="#contact" data-track="cta_audit" data-i18n="audit.cta">اطلب تدقيقك المجاني</a>
           </div>
           <ul class="checks">
@@ -439,7 +405,7 @@
       <div class="wrap">
         <div class="section__head">
           <p class="eyebrow reveal" data-i18n="proc.eyebrow">كيف نعمل</p>
-          <h2 class="display-lg reveal" data-i18n="proc.h2">موقعك جاهز خلال 6 إلى 10 أسابيع.</h2>
+          <h2 class="display-lg reveal" data-i18n="proc.h2">معظم المواقع تُطلق خلال 6 إلى 10 أسابيع.</h2>
         </div>
         <ol class="steps">
           <li class="step reveal"><span class="step__n">1</span><h3 class="headline" data-i18n="p1.h">التدقيق والاستراتيجية</h3><p data-i18n="p1.p">ندرس بياناتك ومنافسيك وعملاءك، ثم نتفق على أرقام مستهدفة.</p><span class="step__t" data-i18n="p1.t">الأسبوع 1</span></li>
@@ -473,10 +439,10 @@
               <li data-i18n="plan1.l3">إعداد SEO للصفحات</li>
               <li data-i18n="plan1.l4">4–6 أسابيع</li>
             </ul>
-            <a class="btn btn--secondary btn--block" href="#contact" data-track="cta_plan_launch" data-i18n="plan.cta">اطلب عرض سعر</a>
+            <a class="btn btn--secondary btn--block" href="#contact" data-track="cta_plan_launch" data-need="new-website" data-i18n="plan.cta">اطلب عرض سعر</a>
           </div>
           <div class="plan plan--featured reveal">
-            <span class="plan__tag" data-i18n="plan2.tag">الأكثر اختيارًا</span>
+            <span class="plan__tag" data-i18n="plan2.tag">موصى به</span>
             <h3 class="headline" data-i18n="plan2.h">نمو</h3>
             <p class="muted" data-i18n="plan2.d">للشركات التي تريد موقعًا يبيع.</p>
             <div class="plan__price"><small data-i18n="from">ابتداءً من</small> AED 35k</div>
@@ -486,7 +452,7 @@
               <li data-i18n="plan2.l3">خطة محتوى SEO لمدة 3 أشهر</li>
               <li data-i18n="plan2.l4">اختبارات تحويل شهرية</li>
             </ul>
-            <a class="btn btn--primary btn--block" href="#contact" data-track="cta_plan_growth" data-i18n="plan.cta">اطلب عرض سعر</a>
+            <a class="btn btn--primary btn--block" href="#contact" data-track="cta_plan_growth" data-need="new-website" data-i18n="plan.cta">اطلب عرض سعر</a>
           </div>
           <div class="plan reveal">
             <h3 class="headline" data-i18n="plan3.h">توسّع</h3>
@@ -498,31 +464,27 @@
               <li data-i18n="plan3.l3">تكاملات ولوحات بيانات</li>
               <li data-i18n="plan3.l4">فريق نمو مخصص</li>
             </ul>
-            <a class="btn btn--secondary btn--block" href="#contact" data-track="cta_plan_scale" data-i18n="plan.cta">اطلب عرض سعر</a>
+            <a class="btn btn--secondary btn--block" href="#contact" data-track="cta_plan_scale" data-need="ecommerce" data-i18n="plan.cta">اطلب عرض سعر</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ================= TESTIMONIALS (placeholders — replace with real quotes) ================= -->
-    <section class="section section--tight">
+    <!-- ================= WHO YOU WORK WITH (fill in, then remove the comment markers) =================
+    <section class="section section--tight" id="team">
       <div class="wrap">
-        <div class="quotes">
-          <figure class="quote reveal">
-            <blockquote data-i18n="q1">"كانوا الوكالة الوحيدة التي سألت عن أهدافنا من العملاء المحتملين قبل أن تعرض علينا أي تصميم. وحققناها خلال أربعة أشهر."</blockquote>
-            <figcaption><b>Rania Haddad</b><span data-i18n="q1.r">مديرة التسويق، مارينا إستيتس</span></figcaption>
-          </figure>
-          <figure class="quote reveal">
-            <blockquote data-i18n="q2">"موقعنا العربي أصبح أخيرًا طبيعيًا وأصيلًا. تضاعفت الحجوزات من زوار السعودية أكثر من مرة."</blockquote>
-            <figcaption><b>Dr. Omar Al Suwaidi</b><span data-i18n="q2.r">المؤسس، عيادات قمر</span></figcaption>
-          </figure>
-          <figure class="quote reveal">
-            <blockquote data-i18n="q3">"سريعون وصادقون وملتزمون بالميزانية. يقدّمون تقارير عن الإيرادات، لا عن أرقام شكلية."</blockquote>
-            <figcaption><b>James Whitfield</b><span data-i18n="q3.r">الرئيس التنفيذي، عود هاوس</span></figcaption>
-          </figure>
+        <div class="person reveal">
+          <img class="person__photo" src="/team/founder.webp" alt="[Founder name], founder of Open Growth" width="160" height="160" loading="lazy">
+          <div>
+            <p class="eyebrow">Who you will work with</p>
+            <h2 class="display-md">[Founder name], founder</h2>
+            <p class="body-lg muted">[Two or three true sentences: years of experience, industries, one thing you are proud of. Link to LinkedIn.]</p>
+          </div>
         </div>
       </div>
     </section>
+    Add real testimonials here too: full name, role, company, with their written permission.
+    -->
 
     <!-- ================= FAQ / OBJECTIONS ================= -->
     <section class="section" id="faq">
@@ -534,12 +496,12 @@
         <div class="faq">
           <details class="reveal"><summary data-i18n="f0.q">كم تكلفة تصميم موقع إلكتروني في دبي؟</summary><p data-i18n="f0.a">تعتمد التكلفة على نطاق العمل. قد تبدأ المواقع الجاهزة في دبي بأقل من 5,000 درهم، بينما تتراوح المواقع المخصصة للشركات لدى الوكالات المعروفة عادةً بين 15,000 و50,000 درهم أو أكثر. تبدأ مواقعنا ثنائية اللغة من 18,000 درهم لموقع حتى 8 صفحات، و35,000 درهم للمواقع المرتبطة بـ CRM وتتبّع العملاء، و70,000 درهم للمتاجر الإلكترونية والمواقع متعددة الأسواق الخليجية.</p></details>
           <details class="reveal"><summary data-i18n="f7.q">هل أحتاج إلى موقع ثنائي اللغة بالعربية والإنجليزية؟</summary><p data-i18n="f7.a">نعم، إذا كان بعض عملائك يفضّلون العربية. العربية هي اللغة الرسمية في الإمارات، ويبحث كثير من المشترين في الخليج بالعربية أولًا. نسخة عربية مبنية بشكل صحيح وعلى رابط مستقل تساعدك على الظهور في عمليات البحث هذه، وتزيد احتمال تواصل الزوار الناطقين بالعربية معك.</p></details>
-          <details class="reveal"><summary data-i18n="f1.q">كم يستغرق بناء موقع إلكتروني في دبي؟</summary><p data-i18n="f1.a">تُطلق معظم المشاريع خلال 6 إلى 10 أسابيع، ومواقع باقة الانطلاق خلال 4 أسابيع تقريبًا. نتفق على جدول زمني ثابت قبل أن نبدأ.</p></details>
-          <details class="reveal"><summary data-i18n="f2.q">هل تكتبون بالعربية فعلًا أم تترجمون؟</summary><p data-i18n="f2.a">يكتب كتّاب محتوى عرب كل صفحة ويراجعونها، ونصمّم تخطيط RTL مستقلًا بدلًا من عكس النسخة الإنجليزية.</p></details>
-          <details class="reveal"><summary data-i18n="f3.q">ماذا لو لم يجلب الموقع عملاء أكثر؟</summary><p data-i18n="f3.a">نحدّد أرقامًا مستهدفة في الأسبوع الأول ونقدّم تقريرًا عنها كل شهر. في باقة النمو، إن لم نحقق الهدف المتفق عليه خلال أول 90 يومًا، نواصل أعمال تحسين التحويل مجانًا حتى نحققه.</p></details>
-          <details class="reveal"><summary data-i18n="f4.q">هل سأتمكن من تعديل الموقع بنفسي؟</summary><p data-i18n="f4.a">نعم. يأتي كل موقع مع نظام إدارة محتوى سهل، وجلسة تدريب مسجّلة، و30 يومًا من الدعم المجاني بعد الإطلاق.</p></details>
-          <details class="reveal"><summary data-i18n="f5.q">هل تعملون مع شركات خارج دبي؟</summary><p data-i18n="f5.a">نعم. نعمل مع عملاء في الإمارات والسعودية وقطر والكويت والبحرين وعُمان، ونلتقي حضوريًا في دبي وأبوظبي.</p></details>
-          <details class="reveal"><summary data-i18n="f6.q">هل يمكنني الدفع على مراحل؟</summary><p data-i18n="f6.a">نعم. الشروط المعتادة: 40% عند البدء، و40% عند اعتماد التصميم، و20% عند الإطلاق.</p></details>
+          <details class="reveal"><summary data-i18n="f1.q">كم يستغرق بناء موقع إلكتروني في دبي؟</summary><p data-i18n="f1.a">تُطلق معظم المشاريع خلال 6 إلى 10 أسابيع، ومواقع باقة الانطلاق الأصغر خلال 4 إلى 6 أسابيع. نتفق على جدول زمني ثابت في عرضنا قبل أن نبدأ.</p></details>
+          <details class="reveal"><summary data-i18n="f2.q">هل تكتبون بالعربية فعلًا أم تترجمون؟</summary><p data-i18n="f2.a">نكتب المحتوى العربي لقرّاء العربية، لا بالترجمة الآلية، ويراجعه متحدث أصلي قبل الإطلاق. كما نصمّم تخطيط RTL مستقلًا بدلًا من عكس النسخة الإنجليزية.</p></details>
+          <details class="reveal"><summary data-i18n="f3.q">ماذا لو لم يجلب الموقع عملاء أكثر؟</summary><p data-i18n="f3.a">نتفق على أرقام مستهدفة في الأسبوع الأول ونقدّم تقريرًا عنها كل شهر. إذا تأخرت النتائج، يوضّح التقرير ما نعتقد أنه يعيقها وما سنغيّره بعد ذلك.</p></details>
+          <details class="reveal"><summary data-i18n="f4.q">هل سأتمكن من تعديل الموقع بنفسي؟</summary><p data-i18n="f4.a">نعم. يأتي كل موقع مع نظام إدارة محتوى سهل وجلسة تسليم، ليتمكن فريقك من تحديث الصفحات دون الحاجة إلينا.</p></details>
+          <details class="reveal"><summary data-i18n="f5.q">هل تعملون مع شركات خارج دبي؟</summary><p data-i18n="f5.a">نعم. مقرّنا في دبي ونعمل عن بُعد مع الشركات في الإمارات ودول الخليج.</p></details>
+          <details class="reveal"><summary data-i18n="f6.q">هل يمكنني الدفع على مراحل؟</summary><p data-i18n="f6.a">نعم. تُقسّم المدفوعات على مراحل نتفق عليها في عرضنا قبل بدء أي عمل.</p></details>
         </div>
       </div>
     </section>
@@ -549,8 +511,8 @@
       <div class="wrap contact">
         <div class="contact__copy">
           <p class="eyebrow reveal" data-i18n="ct.eyebrow">ابدأ من هنا</p>
-          <h2 class="display-lg reveal" data-i18n="ct.h2">احجز تدقيقك المجاني.</h2>
-          <p class="body-lg muted reveal" data-i18n="ct.p">أربعة أسئلة سريعة. يرد عليك أحد خبرائنا خلال يوم عمل واحد، وغالبًا في اليوم نفسه.</p>
+          <h2 class="display-lg reveal" data-i18n="ct.h2">احصل على تدقيقك المجاني أو عرض سعر.</h2>
+          <p class="body-lg muted reveal" data-i18n="ct.p">أخبرنا بما تحتاجه في أقل من دقيقة. نرد عليك خلال يوم عمل واحد.</p>
           <ul class="contact__direct reveal">
             <li><span data-i18n="ct.call">اتصل</span><a href="tel:+97140000000" data-track="phone_contact">+971 4 000 0000</a></li>
             <li><span>WhatsApp</span><a href="https://wa.me/971500000000" target="_blank" rel="noopener" data-track="whatsapp_contact">+971 50 000 0000</a></li>
@@ -559,30 +521,30 @@
           </ul>
         </div>
 
-        <!-- Replace action with your form endpoint (Formspree, HubSpot, etc.) -->
-        <form class="form reveal" id="leadForm" action="#" method="post" novalidate>
-          <p class="micro muted" data-i18n="fm.req">جميع الحقول الأربعة مطلوبة.</p>
+        <!-- Posts to /api/lead (Vercel function). Set WEB3FORMS_KEY or LEAD_WEBHOOK_URL in Vercel to receive leads. -->
+        <form class="form reveal" id="leadForm" action="/api/lead" method="post" novalidate>
+          <p class="micro muted" data-i18n="fm.req">الحقول المميزة بـ * مطلوبة.</p>
           <p class="form__fail" role="alert" tabindex="-1" hidden data-i18n="fm.fail">تعذّر إرسال طلبك. تحقق من اتصالك وحاول مرة أخرى، أو راسلنا عبر واتساب.</p>
           <div class="field">
             <label for="need"><span data-i18n="fm.need">ماذا تحتاج؟</span> <span class="req" aria-hidden="true">*</span></label>
             <select id="need" name="need" required>
               <option value="" data-i18n="fm.choose">اختر خيارًا</option>
+              <option value="audit" data-i18n="fm.need0">تدقيق مجاني لموقعي الحالي</option>
               <option value="new-website" data-i18n="fm.need1">موقع جديد</option>
               <option value="redesign" data-i18n="fm.need2">إعادة تصميم موقعي الحالي</option>
               <option value="seo-growth" data-i18n="fm.need3">عملاء أكثر من موقعي الحالي</option>
               <option value="ecommerce" data-i18n="fm.need4">متجر إلكتروني</option>
             </select>
-            <p class="field__error" id="needError" hidden data-i18n="fm.err.need">اختر ما تحتاجه لنخصّص التدقيق لك.</p>
+            <p class="field__error" id="needError" hidden data-i18n="fm.err.need">اختر ما تحتاجه لنرد عليك بالخطوة المناسبة.</p>
           </div>
           <fieldset class="field">
-            <legend><span data-i18n="fm.budget">نطاق الميزانية</span> <span class="req" aria-hidden="true">*</span></legend>
+            <legend><span data-i18n="fm.budget">نطاق الميزانية</span> <span class="opt" data-i18n="fm.opt">(اختياري)</span></legend>
             <div class="chips">
-              <label class="chip"><input type="radio" name="budget" value="18-35k" required><span>AED 18–35k</span></label>
+              <label class="chip"><input type="radio" name="budget" value="18-35k"><span>AED 18–35k</span></label>
               <label class="chip"><input type="radio" name="budget" value="35-70k"><span>AED 35–70k</span></label>
               <label class="chip"><input type="radio" name="budget" value="70k+"><span>AED 70k+</span></label>
               <label class="chip"><input type="radio" name="budget" value="unsure"><span data-i18n="fm.unsure">لست متأكدًا بعد</span></label>
             </div>
-            <p class="field__error" id="budgetError" hidden data-i18n="fm.err.budget">اختر نطاق الميزانية، أو اختر «لست متأكدًا بعد».</p>
           </fieldset>
           <div class="field">
             <label for="timeline"><span data-i18n="fm.time">الإطار الزمني</span> <span class="req" aria-hidden="true">*</span></label>
@@ -600,11 +562,13 @@
             <p class="field__help micro muted" id="contactHelp" data-i18n="fm.help">نرد عليك عبر الوسيلة التي تذكرها، وغالبًا في اليوم نفسه.</p>
             <p class="field__error" id="contactError" hidden data-i18n="fm.err.contact">أدخل بريدًا إلكترونيًا مثل you@company.ae أو رقم هاتف من 8 أرقام على الأقل.</p>
           </div>
-          <button class="btn btn--primary btn--block" type="submit" data-track="form_submit"><span class="btn__spin" aria-hidden="true"></span><span data-i18n="fm.submit">احصل على تدقيقي المجاني</span></button>
-          <p class="micro muted" data-i18n="fm.note">بلا رسائل مزعجة ولا ضغط بيعي. نستخدم بياناتك للرد عليك فقط.</p>
+          <button class="btn btn--primary btn--block" type="submit" data-track="form_submit"><span class="btn__spin" aria-hidden="true"></span><span data-i18n="fm.submit">أرسل طلبي</span></button>
+          <!-- Spam trap: real visitors never see or fill this -->
+          <div class="hp" aria-hidden="true"><label for="hpField">Leave this empty</label><input id="hpField" name="company_website" type="text" tabindex="-1" autocomplete="off"></div>
+          <p class="micro muted"><span data-i18n="fm.note">بلا رسائل مزعجة ولا ضغط بيعي. نستخدم بياناتك للرد عليك فقط.</span> <a class="link" href="/privacy/" data-i18n="fm.privacy">سياسة الخصوصية</a></p>
           <div class="form__ok" role="status" tabindex="-1" hidden>
             <strong data-i18n="fm.ok.h">شكرًا لك، استلمنا طلبك.</strong>
-            <span data-i18n="fm.ok.p">سيتواصل معك أحد خبرائنا خلال يوم عمل واحد.</span>
+            <span data-i18n="fm.ok.p">سنتواصل معك خلال يوم عمل واحد.</span>
             <button class="btn btn--secondary btn--sm" type="button" id="formReset" data-i18n="fm.again">إرسال طلب آخر</button>
           </div>
         </form>
@@ -647,14 +611,14 @@
         </div>
       </div>
       <div class="footer__base micro muted">
-        <span>© <span id="year">2026</span> Open Growth FZ-LLC</span>
-        <span data-i18n="ft.loc">دبي · أبوظبي · الرياض</span>
+        <span>© <span id="year">2026</span> Open Growth · <a href="/privacy/" data-i18n="fm.privacy">سياسة الخصوصية</a></span>
+        <span data-i18n="ft.loc">مقرّنا دبي، ونخدم الإمارات ودول الخليج</span>
       </div>
     </div>
   </footer>
 
   <!-- Floating WhatsApp -->
-  <a class="wa-float" href="https://wa.me/971500000000" target="_blank" rel="noopener" aria-label="تواصل عبر واتساب" data-track="whatsapp_float">
+  <a class="wa-float is-hidden" href="https://wa.me/971500000000" target="_blank" rel="noopener" aria-label="تواصل عبر واتساب" data-track="whatsapp_float">
     <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.3-.2-.5-.3Z"/></svg>
   </a>
 

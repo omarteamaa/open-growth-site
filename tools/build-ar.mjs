@@ -17,9 +17,7 @@ const LABELS = {
   "Primary": "التنقل الرئيسي",
   "Switch to light theme": "التبديل إلى الوضع الفاتح",
   "Open menu": "فتح القائمة",
-  "Ratings and partners": "التقييمات والشركاء",
-  "Selected clients": "عملاء مختارون",
-  "Pause logo animation": "إيقاف حركة الشعارات",
+  "What every project includes": "ما يتضمنه كل مشروع",
   "Pause slideshow": "إيقاف العرض التلقائي",
   "Previous website": "الموقع السابق",
   "Next website": "الموقع التالي",
@@ -85,7 +83,9 @@ ar = ar.replace(/(<meta (?:property="og|name="twitter):title" content=")[^"]*"/g
 ar = ar.replace(/(<meta (?:property="og|name="twitter):description" content=")[^"]*"/g, "$1" + DESC + '"');
 swap('<meta property="og:locale" content="en_AE">\n  <meta property="og:locale:alternate" content="ar_AE">',
   '<meta property="og:locale" content="ar_AE">\n  <meta property="og:locale:alternate" content="en_AE">', "og locale");
-swap("&display=swap", "&family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap", "arabic font");
+swap('<link rel="stylesheet" href="/styles.css">',
+  '<link rel="preconnect" href="https://fonts.googleapis.com">\n  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n' +
+  '  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet">\n  <link rel="stylesheet" href="/styles.css">', "arabic font");
 swap('<a class="lang" href="/ar/" hreflang="ar" lang="ar" data-track="lang_switch" aria-label="العربية">عربي</a>',
   '<a class="lang" href="/" hreflang="en" lang="en" data-track="lang_switch" aria-label="English">English</a>', "lang link");
 

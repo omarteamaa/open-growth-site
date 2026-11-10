@@ -49,13 +49,6 @@
     });
   }
 
-  /* ---------- Logo marquee pause ---------- */
-  var logosToggle = document.getElementById("logosToggle");
-  logosToggle.addEventListener("click", function () {
-    var paused = logosToggle.getAttribute("aria-pressed") !== "true";
-    logosToggle.setAttribute("aria-pressed", String(paused));
-    document.querySelector(".logos").classList.toggle("is-paused", paused);
-  });
 
   /* ---------- Scroll reveal with per-group stagger ---------- */
   var reveals = document.querySelectorAll(".reveal");
@@ -130,14 +123,14 @@
     "hero.sub": "أوبن جروث شركة تصميم مواقع في دبي تبني مواقع سريعة ثنائية اللغة بالعربية والإنجليزية للشركات الخدمية في الإمارات ودول الخليج. نقيس عملنا بعدد الاستفسارات والإيرادات، لا بالإعجابات.",
     "hero.cta1": "احصل على تدقيق مجاني لموقعك",
     "hero.cta2": "تواصل عبر واتساب",
-    "mock.label": "العملاء المحتملون المؤهَّلون · آخر 90 يومًا",
-    "mock.delta": "مقارنةً بالموقع السابق",
+    "mock.label": "استفسارات الموقع · هذا الشهر",
+    "mock.delta": "12 أكثر من الشهر الماضي",
     "mock.k1": "سرعة التحميل", "mock.k2": "معدل التحويل", "mock.k3": "ثنائي اللغة",
-    "stats.1": "موقعًا تم إطلاقه", "stats.2": "متوسط زيادة العملاء المحتملين",
-    "stats.3": "سنوات في الإمارات", "stats.4": "متوسط التحميل على الجوال",
+    "stats.1": "مدة إنجاز التدقيق المجاني", "stats.2": "لغتان في كل موقع",
+    "stats.3": "درجة PageSpeed التي نستهدفها", "stats.4": "تبدأ أسعار المواقع من",
 
-    "work.eyebrow": "أعمال مختارة",
-    "work.h2": "لكل مشروع رقمٌ يثبت نتيجته.",
+    "work.eyebrow": "تصاميم مفاهيمية",
+    "work.h2": "مواقع مصممة لطريقة شراء العملاء في الخليج.",
     "case1.metric": "زيادة في الاستفسارات خلال 6 أشهر",
     "case1.tag": "عقارات · دبي",
     "case1.body": "موقع عقاري جديد ثنائي اللغة مع صفحات هبوط لمشاريع على الخارطة، وتوجيه العملاء عبر واتساب وربط مع نظام CRM. انخفضت تكلفة العميل المحتمل من 410 إلى 96 درهمًا.",
@@ -167,9 +160,9 @@
     "svc.eyebrow": "ماذا نقدّم",
     "svc.h2": "خدمات تصميم المواقع، من أول مسودة حتى عملاء أكثر.",
     "svc1.h": "تصميم وتطوير المواقع",
-    "svc1.p": "مواقع تركّز على التحويل عبر Webflow أو Framer أو WordPress أو برمجة مخصصة، مصمّمة للجوال أولًا وتحقق أكثر من 90 في PageSpeed.",
+    "svc1.p": "مواقع تركّز على التحويل عبر Webflow أو Framer أو WordPress أو برمجة مخصصة، مصمّمة للجوال أولًا ونستهدف فيها 90+ في PageSpeed.",
     "svc2.h": "تصميم مواقع عربية وثنائية اللغة",
-    "svc2.p": "تخطيطات صحيحة من اليمين إلى اليسار، ومحتوى وخطوط عربية أصيلة. لا نكتفي بترجمة الصفحة الإنجليزية.",
+    "svc2.p": "تخطيطات صحيحة من اليمين إلى اليسار، ومحتوى عربي مكتوب لقرّاء العربية. لا نكتفي بترجمة الصفحة الإنجليزية.",
     "svc3.h": "تحسين محركات البحث والمحتوى",
     "svc3.p": "تحسين تقني، وبحث محلي في الإمارات والخليج، ومحتوى يتصدّر النتائج باللغتين.",
     "svc4.h": "تحسين التحويل والتحليلات",
@@ -177,7 +170,7 @@
 
     "audit.eyebrow": "مجاني · دون أي التزام · خلال 48 ساعة",
     "audit.h2": "احصل على تدقيق مجاني لموقعك وفرص نموه.",
-    "audit.p": "يراجع خبراؤنا موقعك الحالي ويرسلون لك فيديو قصيرًا وقائمة إصلاحات مرتبة حسب الأولوية. هي لك في كل الأحوال.",
+    "audit.p": "نراجع موقعك الحالي ونرسل لك فيديو قصيرًا وقائمة إصلاحات مرتبة حسب الأولوية. هي لك في كل الأحوال.",
     "audit.cta": "اطلب تدقيقك المجاني",
     "audit.l1": "فحص السرعة ومؤشرات Core Web Vitals",
     "audit.l2": "فجوات SEO مقارنةً بأقوى 3 منافسين",
@@ -186,7 +179,7 @@
     "audit.l5": "تحسينات سريعة يمكنك تنفيذها هذا الأسبوع",
 
     "proc.eyebrow": "كيف نعمل",
-    "proc.h2": "موقعك جاهز خلال 6 إلى 10 أسابيع.",
+    "proc.h2": "معظم المواقع تُطلق خلال 6 إلى 10 أسابيع.",
     "p1.h": "التدقيق والاستراتيجية", "p1.p": "ندرس بياناتك ومنافسيك وعملاءك، ثم نتفق على أرقام مستهدفة.", "p1.t": "الأسبوع 1",
     "p2.h": "التصميم", "p2.p": "مخططات أولية ثم تصاميم نهائية بالعربية والإنجليزية. توافق على كل شاشة.", "p2.t": "الأسابيع 2–4",
     "p3.h": "التطوير والاختبار", "p3.p": "البرمجة وإعداد التتبّع وتحسين السرعة والاختبار على أجهزة حقيقية.", "p3.t": "الأسابيع 4–8",
@@ -200,7 +193,7 @@
     "plan.cta": "اطلب عرض سعر",
     "plan1.h": "انطلاق", "plan1.d": "للعلامات الجديدة التي تحتاج موقعًا سريعًا وموثوقًا.",
     "plan1.l1": "حتى 8 صفحات، عربي + إنجليزي", "plan1.l2": "نموذج تواصل + واتساب", "plan1.l3": "إعداد SEO للصفحات", "plan1.l4": "4–6 أسابيع",
-    "plan2.tag": "الأكثر اختيارًا",
+    "plan2.tag": "موصى به",
     "plan2.h": "نمو", "plan2.d": "للشركات التي تريد موقعًا يبيع.",
     "plan2.l1": "حتى 20 صفحة + صفحات هبوط", "plan2.l2": "ربط CRM وتتبّع المكالمات وواتساب", "plan2.l3": "خطة محتوى SEO لمدة 3 أشهر", "plan2.l4": "اختبارات تحويل شهرية",
     "plan3.h": "توسّع", "plan3.d": "للمواقع متعددة الأسواق والمتاجر الإلكترونية والشركات الكبرى.",
@@ -220,21 +213,21 @@
     "f7.q": "هل أحتاج إلى موقع ثنائي اللغة بالعربية والإنجليزية؟",
     "f7.a": "نعم، إذا كان بعض عملائك يفضّلون العربية. العربية هي اللغة الرسمية في الإمارات، ويبحث كثير من المشترين في الخليج بالعربية أولًا. نسخة عربية مبنية بشكل صحيح وعلى رابط مستقل تساعدك على الظهور في عمليات البحث هذه، وتزيد احتمال تواصل الزوار الناطقين بالعربية معك.",
     "f1.q": "كم يستغرق بناء موقع إلكتروني في دبي؟",
-    "f1.a": "تُطلق معظم المشاريع خلال 6 إلى 10 أسابيع، ومواقع باقة الانطلاق خلال 4 أسابيع تقريبًا. نتفق على جدول زمني ثابت قبل أن نبدأ.",
+    "f1.a": "تُطلق معظم المشاريع خلال 6 إلى 10 أسابيع، ومواقع باقة الانطلاق الأصغر خلال 4 إلى 6 أسابيع. نتفق على جدول زمني ثابت في عرضنا قبل أن نبدأ.",
     "f2.q": "هل تكتبون بالعربية فعلًا أم تترجمون؟",
-    "f2.a": "يكتب كتّاب محتوى عرب كل صفحة ويراجعونها، ونصمّم تخطيط RTL مستقلًا بدلًا من عكس النسخة الإنجليزية.",
+    "f2.a": "نكتب المحتوى العربي لقرّاء العربية، لا بالترجمة الآلية، ويراجعه متحدث أصلي قبل الإطلاق. كما نصمّم تخطيط RTL مستقلًا بدلًا من عكس النسخة الإنجليزية.",
     "f3.q": "ماذا لو لم يجلب الموقع عملاء أكثر؟",
-    "f3.a": "نحدّد أرقامًا مستهدفة في الأسبوع الأول ونقدّم تقريرًا عنها كل شهر. في باقة النمو، إن لم نحقق الهدف المتفق عليه خلال أول 90 يومًا، نواصل أعمال تحسين التحويل مجانًا حتى نحققه.",
+    "f3.a": "نتفق على أرقام مستهدفة في الأسبوع الأول ونقدّم تقريرًا عنها كل شهر. إذا تأخرت النتائج، يوضّح التقرير ما نعتقد أنه يعيقها وما سنغيّره بعد ذلك.",
     "f4.q": "هل سأتمكن من تعديل الموقع بنفسي؟",
-    "f4.a": "نعم. يأتي كل موقع مع نظام إدارة محتوى سهل، وجلسة تدريب مسجّلة، و30 يومًا من الدعم المجاني بعد الإطلاق.",
+    "f4.a": "نعم. يأتي كل موقع مع نظام إدارة محتوى سهل وجلسة تسليم، ليتمكن فريقك من تحديث الصفحات دون الحاجة إلينا.",
     "f5.q": "هل تعملون مع شركات خارج دبي؟",
-    "f5.a": "نعم. نعمل مع عملاء في الإمارات والسعودية وقطر والكويت والبحرين وعُمان، ونلتقي حضوريًا في دبي وأبوظبي.",
+    "f5.a": "نعم. مقرّنا في دبي ونعمل عن بُعد مع الشركات في الإمارات ودول الخليج.",
     "f6.q": "هل يمكنني الدفع على مراحل؟",
-    "f6.a": "نعم. الشروط المعتادة: 40% عند البدء، و40% عند اعتماد التصميم، و20% عند الإطلاق.",
+    "f6.a": "نعم. تُقسّم المدفوعات على مراحل نتفق عليها في عرضنا قبل بدء أي عمل.",
 
     "ct.eyebrow": "ابدأ من هنا",
-    "ct.h2": "احجز تدقيقك المجاني.",
-    "ct.p": "أربعة أسئلة سريعة. يرد عليك أحد خبرائنا خلال يوم عمل واحد، وغالبًا في اليوم نفسه.",
+    "ct.h2": "احصل على تدقيقك المجاني أو عرض سعر.",
+    "ct.p": "أخبرنا بما تحتاجه في أقل من دقيقة. نرد عليك خلال يوم عمل واحد.",
     "ct.call": "اتصل", "ct.email": "البريد", "ct.visit": "زورونا",
     "ct.addr": "حي دبي للتصميم، دبي، الإمارات",
     "fm.need": "ماذا تحتاج؟", "fm.choose": "اختر خيارًا",
@@ -243,10 +236,10 @@
     "fm.time": "الإطار الزمني", "fm.t1": "في أقرب وقت", "fm.t2": "خلال 1–3 أشهر", "fm.t3": "أستكشف الخيارات فقط",
     "fm.contact": "البريد الإلكتروني أو رقم واتساب",
     "fm.ph": "you@company.ae أو ‎+971…",
-    "fm.submit": "احصل على تدقيقي المجاني",
+    "fm.submit": "أرسل طلبي",
     "fm.sending": "جارٍ الإرسال…",
-    "fm.req": "جميع الحقول الأربعة مطلوبة.",
-    "fm.err.need": "اختر ما تحتاجه لنخصّص التدقيق لك.",
+    "fm.req": "الحقول المميزة بـ * مطلوبة.",
+    "fm.err.need": "اختر ما تحتاجه لنرد عليك بالخطوة المناسبة.",
     "fm.err.budget": "اختر نطاق الميزانية، أو اختر «لست متأكدًا بعد».",
     "fm.err.time": "اختر الإطار الزمني لنخطط للعمل.",
     "fm.err.contact": "أدخل بريدًا إلكترونيًا مثل you@company.ae أو رقم هاتف من 8 أرقام على الأقل.",
@@ -255,18 +248,26 @@
     "fm.again": "إرسال طلب آخر",
     "fm.note": "بلا رسائل مزعجة ولا ضغط بيعي. نستخدم بياناتك للرد عليك فقط.",
     "fm.ok.h": "شكرًا لك، استلمنا طلبك.",
-    "fm.ok.p": "سيتواصل معك أحد خبرائنا خلال يوم عمل واحد.",
+    "fm.ok.p": "سنتواصل معك خلال يوم عمل واحد.",
 
     "ft.h": "لننمِّ أعمالك معًا.",
     "ft.about": "أوبن جروث شركة تصميم مواقع في دبي، تبني مواقع ثنائية اللغة للشركات في الإمارات ودول الخليج.",
     "badge.clutch": "Clutch · 48 تقييمًا",
     "badge.google": "Google · 112 تقييمًا",
+    "promise.1": "عرض سعر ثابت قبل أن نبدأ",
+    "promise.2": "الموقع وجميع الحسابات ملكك",
+    "promise.3": "تقرير شهري عن الاستفسارات",
+    "mock.bar": "تقرير نموذجي",
+    "mock.cap": "مثال على التقرير الشهري الذي يحصل عليه كل عميل. الأرقام توضيحية.",
+    "fm.need0": "تدقيق مجاني لموقعي الحالي",
+    "fm.opt": "(اختياري)",
+    "fm.privacy": "سياسة الخصوصية",
     "a11y.open": "فتح القائمة",
     "a11y.close": "إغلاق القائمة",
     "a11y.dark": "التبديل إلى الوضع الداكن",
     "a11y.light": "التبديل إلى الوضع الفاتح",
     "ft.svc": "الخدمات", "ft.co": "الشركة", "ft.ct": "تواصل",
-    "ft.loc": "دبي · أبوظبي · الرياض"
+    "ft.loc": "مقرّنا دبي، ونخدم الإمارات ودول الخليج"
   };
 
   /* ---------- Squeeze carousel (vanilla port of 21st.dev @yura carousel-squeeze) ---------- */
@@ -317,7 +318,9 @@
       img.decoding = "async";
       img.loading = "lazy";
       img.onerror = function () { img.remove(); };
-      img.src = "/work/" + s.slug + ".webp";
+      img.srcset = "/work/" + s.slug + "-640.webp 640w, /work/" + s.slug + "-960.webp 960w, /work/" + s.slug + ".webp 1280w";
+      img.sizes = "(max-width: 640px) 100vw, 640px";
+      img.src = "/work/" + s.slug + "-960.webp";
       img.alt = s.alt;
       el.insertBefore(img, el.querySelector(".sq__mark"));
       var card = { slide: slide, el: el };
@@ -428,6 +431,15 @@
     root.querySelectorAll(".sq__arrow[data-dir]").forEach(function (b) {
       b.addEventListener("click", function () { step(Number(b.dataset.dir)); });
     });
+    /* Swipe on touch screens */
+    var touchX = null;
+    stripEl.addEventListener("touchstart", function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+    stripEl.addEventListener("touchend", function (e) {
+      if (touchX === null) return;
+      var dx = e.changedTouches[0].clientX - touchX;
+      touchX = null;
+      if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1);
+    }, { passive: true });
     stripEl.addEventListener("keydown", function (e) {
       var by = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
       if (!by) return;
@@ -467,7 +479,6 @@
   var touched = {};
   var CHECKS = {
     need: function () { return !!form.need.value; },
-    budget: function () { return !!form.querySelector("input[name=budget]:checked"); },
     timeline: function () { return !!form.timeline.value; },
     contact: function () {
       var v = form.contact.value.trim();
@@ -503,7 +514,7 @@
   /* Check a field once the visitor leaves it, then keep its message in sync as they fix it */
   form.addEventListener("focusout", function (e) {
     var name = e.target.name;
-    if (!CHECKS[name] || name === "budget") return;
+    if (!CHECKS[name]) return;
     if (!e.target.value.trim()) return;
     touched[name] = true;
     validate(name);
@@ -520,7 +531,7 @@
     submitBtn.disabled = on;
     submitBtn.classList.toggle("is-loading", on);
     form.setAttribute("aria-busy", String(on));
-    submitLabel.textContent = on ? tr("fm.sending", "Sending…") : tr("fm.submit", "Get my free audit");
+    submitLabel.textContent = on ? tr("fm.sending", "Sending…") : tr("fm.submit", "Send my request");
   }
 
   form.addEventListener("submit", function (e) {
@@ -537,7 +548,11 @@
     setLoading(true);
     /* Posts to the form's action once it points at a real endpoint (Formspree, HubSpot, etc.) */
     var send = action && action !== "#"
-      ? fetch(action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
+      ? fetch(action, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(Object.assign({}, data, { lang: document.documentElement.lang, page: location.href }))
+        })
           .then(function (res) { if (!res.ok) throw new Error("HTTP " + res.status); })
       : Promise.resolve();
     send.then(function () {
@@ -549,6 +564,29 @@
       failMsg.focus();
     }).then(function () { setLoading(false); });
   });
+
+  /* "Get a quote" buttons preselect what the visitor needs */
+  document.querySelectorAll("[data-need]").forEach(function (a) {
+    a.addEventListener("click", function () { form.need.value = a.getAttribute("data-need"); showError("need", false); });
+  });
+
+  /* Floating WhatsApp waits until the hero is scrolled past, so it never covers hero content */
+  var waFloat = document.querySelector(".wa-float");
+  var syncWa = function () { waFloat.classList.toggle("is-hidden", window.scrollY < window.innerHeight * 0.8); };
+  window.addEventListener("scroll", syncWa, { passive: true });
+  syncWa();
+
+  /* Optional GA4: loads only when <meta name="ga4-id"> has an ID */
+  var gaId = (document.querySelector('meta[name="ga4-id"]') || {}).content;
+  if (gaId) {
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag("js", new Date());
+    window.gtag("config", gaId);
+    var ga = document.createElement("script");
+    ga.async = true;
+    ga.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(gaId);
+    document.head.appendChild(ga);
+  }
 
   document.getElementById("formReset").addEventListener("click", function () {
     form.reset();

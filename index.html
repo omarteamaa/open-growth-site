@@ -31,9 +31,11 @@
   <script>document.documentElement.classList.add("js")</script>
   <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Fonts are self-hosted (no render-blocking third-party CSS) -->
+  <link rel="preload" href="/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- Analytics: put a GA4 measurement ID here (e.g. G-XXXXXXX) to start tracking; empty = no tracking -->
+  <meta name="ga4-id" content="">
   <link rel="stylesheet" href="/styles.css">
 
   <script type="application/ld+json">
@@ -245,15 +247,16 @@
     <section class="hero">
       <div class="hero__glow" aria-hidden="true"></div>
       <div class="wrap">
-        <p class="eyebrow reveal"><span class="dot"></span><span data-i18n="hero.eyebrow">Web design &amp; growth studio · Dubai, UAE</span></p>
+        <!-- First-screen content is never hidden by scroll reveals: the H1 is the LCP element -->
+        <p class="eyebrow"><span class="dot"></span><span data-i18n="hero.eyebrow">Web design &amp; growth studio · Dubai, UAE</span></p>
 
-        <h1 class="display-xxl reveal" data-i18n="hero.h1">Dubai web design that brings in customers.</h1>
+        <h1 class="display-xxl" data-i18n="hero.h1">Dubai web design that brings in customers.</h1>
 
         <div class="hero__row">
           <div class="hero__copy">
-            <p class="subhead reveal" data-i18n="hero.sub">Open Growth is a web design company in Dubai building fast, bilingual Arabic and English websites for service businesses across the UAE and GCC. We measure our work in enquiries and revenue, not likes.</p>
+            <p class="subhead" data-i18n="hero.sub">Open Growth is a web design company in Dubai building fast, bilingual Arabic and English websites for service businesses across the UAE and GCC. We measure our work in enquiries and revenue, not likes.</p>
 
-            <div class="hero__ctas reveal">
+            <div class="hero__ctas">
               <a class="btn btn--primary" href="#contact" data-track="cta_hero" data-i18n="hero.cta1">Get my free website audit</a>
               <a class="btn btn--secondary" href="https://wa.me/971500000000" target="_blank" rel="noopener" data-track="whatsapp_hero">
                 <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.3-.2-.5-.3Z"/></svg>
@@ -261,23 +264,22 @@
               </a>
             </div>
 
-            <!-- Layered proof: review badges + partner badges (replace with your real ratings) -->
-            <ul class="badges reveal" aria-label="Ratings and partners">
-              <li class="badge"><span class="badge__score">4.9</span><span class="stars" aria-hidden="true">★★★★★</span><span class="badge__label" data-i18n="badge.clutch">Clutch · 48 reviews</span></li>
-              <li class="badge"><span class="badge__score">5.0</span><span class="stars" aria-hidden="true">★★★★★</span><span class="badge__label" data-i18n="badge.google">Google · 112 reviews</span></li>
-              <li class="badge badge--partner">Google Partner</li>
-              <li class="badge badge--partner">Meta Business Partner</li>
-              <li class="badge badge--partner">HubSpot Partner</li>
+            <!-- Promises we can keep from day one. Add real review/partner badges here once you have them. -->
+            <ul class="badges" aria-label="What every project includes">
+              <li class="badge" data-i18n="promise.1">Fixed quote before we start</li>
+              <li class="badge" data-i18n="promise.2">You own the site and every account</li>
+              <li class="badge" data-i18n="promise.3">Monthly report on enquiries</li>
             </ul>
           </div>
 
-          <!-- Product mockup tile -->
-          <div class="mock reveal" aria-hidden="true">
-            <div class="mock__bar"><i></i><i></i><i></i><span>dashboard.opengrowth.ae</span></div>
+          <!-- Illustration of the client report. Clearly labelled as an example: no client data. -->
+          <figure class="mock-wrap">
+          <div class="mock" aria-hidden="true">
+            <div class="mock__bar"><i></i><i></i><i></i><span data-i18n="mock.bar">Example report</span></div>
             <div class="mock__body">
-              <div class="mock__label" data-i18n="mock.label">Qualified leads · last 90 days</div>
-              <div class="mock__value"><span class="count" data-to="212">212</span>%</div>
-              <div class="mock__delta">▲ <span data-i18n="mock.delta">vs. previous site</span></div>
+              <div class="mock__label" data-i18n="mock.label">Website enquiries · this month</div>
+              <div class="mock__value"><span class="count" data-to="48">48</span></div>
+              <div class="mock__delta">▲ <span data-i18n="mock.delta">12 more than last month</span></div>
               <svg class="mock__chart" viewBox="0 0 300 110" preserveAspectRatio="none">
                 <defs>
                   <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
@@ -295,26 +297,17 @@
               </div>
             </div>
           </div>
+          <figcaption class="mock__caption micro muted" data-i18n="mock.cap">Example of the monthly report every client gets. Figures are illustrative.</figcaption>
+          </figure>
         </div>
 
-        <!-- Hard numbers. Final values are in the HTML so crawlers never read "0+" -->
-        <dl class="stats reveal">
-          <div><dt data-i18n="stats.1">Websites launched</dt><dd><span class="count" data-to="140">140</span>+</dd></div>
-          <div><dt data-i18n="stats.2">Avg. lead increase</dt><dd><span class="count" data-to="3.2" data-dec="1">3.2</span>×</dd></div>
-          <div><dt data-i18n="stats.3">Years in the UAE</dt><dd><span class="count" data-to="9">9</span></dd></div>
-          <div><dt data-i18n="stats.4">Avg. mobile load</dt><dd>&lt;<span class="count" data-to="1.5" data-dec="1">1.5</span>s</dd></div>
+        <!-- Facts about the offer (not track-record claims). Final values are in the HTML so crawlers never read "0" -->
+        <dl class="stats">
+          <div><dt data-i18n="stats.1">Free audit turnaround</dt><dd><span class="count" data-to="48">48</span>h</dd></div>
+          <div><dt data-i18n="stats.2">Languages in every build</dt><dd>EN + AR</dd></div>
+          <div><dt data-i18n="stats.3">PageSpeed score we build to</dt><dd><span class="count" data-to="90">90</span>+</dd></div>
+          <div><dt data-i18n="stats.4">Websites start from</dt><dd>AED 18k</dd></div>
         </dl>
-      </div>
-
-      <!-- Client logos (swap for real logo SVGs) -->
-      <div class="logos-wrap">
-      <div class="logos" role="group" aria-label="Selected clients">
-        <div class="logos__track">
-          <span>Al Noor Group</span><span>Sahara Living</span><span>Qamar Clinics</span><span>Falcon Logistics</span><span>Dune &amp; Co.</span><span>Marina Estates</span><span>Oud House</span><span>Zayna Retail</span>
-          <span aria-hidden="true">Al Noor Group</span><span aria-hidden="true">Sahara Living</span><span aria-hidden="true">Qamar Clinics</span><span aria-hidden="true">Falcon Logistics</span><span aria-hidden="true">Dune &amp; Co.</span><span aria-hidden="true">Marina Estates</span><span aria-hidden="true">Oud House</span><span aria-hidden="true">Zayna Retail</span>
-        </div>
-      </div>
-      <button class="motion-toggle" type="button" id="logosToggle" aria-label="Pause logo animation" aria-pressed="false"><svg class="i-pause" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="3.5" y="2.5" width="3" height="11" rx="1"/><rect x="9.5" y="2.5" width="3" height="11" rx="1"/></svg><svg class="i-play" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4.5 2.8v10.4a.8.8 0 0 0 1.2.7l8.3-5.2a.8.8 0 0 0 0-1.4L5.7 2.1a.8.8 0 0 0-1.2.7Z"/></svg></button>
       </div>
     </section>
 
@@ -322,12 +315,12 @@
     <section class="section" id="work">
       <div class="wrap">
         <div class="section__head">
-          <p class="eyebrow reveal" data-i18n="work.eyebrow">Selected work</p>
-          <h2 class="display-lg reveal" data-i18n="work.h2">Every project has a number attached.</h2>
+          <p class="eyebrow reveal" data-i18n="work.eyebrow">Concept designs</p>
+          <h2 class="display-lg reveal" data-i18n="work.h2">Websites designed for how Gulf customers buy.</h2>
         </div>
 
-        <!-- Recent launches: squeeze carousel (vanilla port of 21st.dev @yura carousel-squeeze).
-             Panels show the concept designs in /work. -->
+        <!-- Concept work: squeeze carousel (vanilla port of 21st.dev @yura carousel-squeeze).
+             Add real client case studies (with measured results and dates) below once you have them. -->
         <div class="sq reveal" id="squeeze" aria-roledescription="carousel">
           <div class="sq__controls">
             <button class="sq__arrow sq__play" type="button" id="sqPlay" aria-label="Pause slideshow" aria-pressed="false"><svg class="i-pause" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="3.5" y="2.5" width="3" height="11" rx="1"/><rect x="9.5" y="2.5" width="3" height="11" rx="1"/></svg><svg class="i-play" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4.5 2.8v10.4a.8.8 0 0 0 1.2.7l8.3-5.2a.8.8 0 0 0 0-1.4L5.7 2.1a.8.8 0 0 0-1.2.7Z"/></svg></button>
@@ -347,36 +340,6 @@
           <p class="sq__note micro muted" data-i18n="sq.note">These are concept designs, not client projects.</p>
         </div>
 
-        <div class="cases">
-          <article class="case case--wide reveal">
-            <div class="case__metric">+318%</div>
-            <div class="case__metric-label" data-i18n="case1.metric">inbound enquiries in 6 months</div>
-            <div class="case__meta"><h3 class="case__client">Marina Estates</h3><span data-i18n="case1.tag">Real estate · Dubai</span></div>
-            <p data-i18n="case1.body">New bilingual property site with off-plan landing pages, WhatsApp lead routing and CRM sync. Cost per lead fell from AED 410 to AED 96.</p>
-            <a class="link" href="#contact" data-i18n="case.cta">Get results like this →</a>
-          </article>
-
-          <article class="case reveal">
-            <div class="case__metric">2.6×</div>
-            <div class="case__metric-label" data-i18n="case2.metric">online bookings</div>
-            <div class="case__meta"><h3 class="case__client">Qamar Clinics</h3><span data-i18n="case2.tag">Healthcare · Abu Dhabi</span></div>
-            <p data-i18n="case2.body">Arabic-first booking flow and doctor profiles. Mobile load time cut from 6.1s to 1.2s.</p>
-          </article>
-
-          <article class="case reveal">
-            <div class="case__metric">#1</div>
-            <div class="case__metric-label" data-i18n="case3.metric">Google rank for 14 key terms</div>
-            <div class="case__meta"><h3 class="case__client">Falcon Logistics</h3><span data-i18n="case3.tag">B2B · Jebel Ali</span></div>
-            <p data-i18n="case3.body">Rebuilt service pages around search intent across UAE and KSA. Organic traffic up 190%.</p>
-          </article>
-
-          <article class="case reveal">
-            <div class="case__metric">+41%</div>
-            <div class="case__metric-label" data-i18n="case4.metric">e-commerce revenue</div>
-            <div class="case__meta"><h3 class="case__client">Oud House</h3><span data-i18n="case4.tag">Retail · GCC</span></div>
-            <p data-i18n="case4.body">Faster Shopify storefront, GCC-wide shipping logic and a checkout that converts 4.8% of visitors.</p>
-          </article>
-        </div>
       </div>
     </section>
 
@@ -391,12 +354,12 @@
           <div class="card reveal">
             <span class="card__num">01</span>
             <h3 class="headline" data-i18n="svc1.h">Website design &amp; development</h3>
-            <p data-i18n="svc1.p">Conversion-focused sites on Webflow, Framer, WordPress or custom code. Built mobile-first and scoring 90+ on PageSpeed.</p>
+            <p data-i18n="svc1.p">Conversion-focused sites on Webflow, Framer, WordPress or custom code. Built mobile-first, with a 90+ PageSpeed target.</p>
           </div>
           <div class="card reveal">
             <span class="card__num">02</span>
             <h3 class="headline" data-i18n="svc2.h">Arabic &amp; bilingual website design</h3>
-            <p data-i18n="svc2.p">Proper right-to-left layouts, native Arabic copy and typography. We don't just translate the English page.</p>
+            <p data-i18n="svc2.p">Proper right-to-left layouts and Arabic copy written for Arabic readers. We don't just translate the English page.</p>
           </div>
           <div class="card reveal">
             <span class="card__num">03</span>
@@ -419,7 +382,7 @@
           <div class="spotlight__copy">
             <p class="eyebrow eyebrow--light" data-i18n="audit.eyebrow">Free · No obligation · 48-hour turnaround</p>
             <h2 class="display-md" data-i18n="audit.h2">Get a free website &amp; growth audit.</h2>
-            <p class="body-lg" data-i18n="audit.p">Our strategists review your current site and send back a short video and a prioritised fix list. You keep it either way.</p>
+            <p class="body-lg" data-i18n="audit.p">We review your current site and send back a short video and a prioritised fix list. You keep it either way.</p>
             <a class="btn btn--primary" href="#contact" data-track="cta_audit" data-i18n="audit.cta">Claim my free audit</a>
           </div>
           <ul class="checks">
@@ -438,7 +401,7 @@
       <div class="wrap">
         <div class="section__head">
           <p class="eyebrow reveal" data-i18n="proc.eyebrow">How it works</p>
-          <h2 class="display-lg reveal" data-i18n="proc.h2">Live in 6 to 10 weeks.</h2>
+          <h2 class="display-lg reveal" data-i18n="proc.h2">Most sites go live in 6 to 10 weeks.</h2>
         </div>
         <ol class="steps">
           <li class="step reveal"><span class="step__n">1</span><h3 class="headline" data-i18n="p1.h">Audit &amp; strategy</h3><p data-i18n="p1.p">We look at your data, competitors and customers, then agree on target numbers.</p><span class="step__t" data-i18n="p1.t">Week 1</span></li>
@@ -472,10 +435,10 @@
               <li data-i18n="plan1.l3">On-page SEO setup</li>
               <li data-i18n="plan1.l4">4–6 weeks</li>
             </ul>
-            <a class="btn btn--secondary btn--block" href="#contact" data-track="cta_plan_launch" data-i18n="plan.cta">Get a quote</a>
+            <a class="btn btn--secondary btn--block" href="#contact" data-track="cta_plan_launch" data-need="new-website" data-i18n="plan.cta">Get a quote</a>
           </div>
           <div class="plan plan--featured reveal">
-            <span class="plan__tag" data-i18n="plan2.tag">Most chosen</span>
+            <span class="plan__tag" data-i18n="plan2.tag">Recommended</span>
             <h3 class="headline" data-i18n="plan2.h">Growth</h3>
             <p class="muted" data-i18n="plan2.d">For businesses that need the site to sell.</p>
             <div class="plan__price"><small data-i18n="from">from</small> AED 35k</div>
@@ -485,7 +448,7 @@
               <li data-i18n="plan2.l3">SEO content plan, 3 months</li>
               <li data-i18n="plan2.l4">Monthly CRO testing</li>
             </ul>
-            <a class="btn btn--primary btn--block" href="#contact" data-track="cta_plan_growth" data-i18n="plan.cta">Get a quote</a>
+            <a class="btn btn--primary btn--block" href="#contact" data-track="cta_plan_growth" data-need="new-website" data-i18n="plan.cta">Get a quote</a>
           </div>
           <div class="plan reveal">
             <h3 class="headline" data-i18n="plan3.h">Scale</h3>
@@ -497,31 +460,27 @@
               <li data-i18n="plan3.l3">Integrations &amp; dashboards</li>
               <li data-i18n="plan3.l4">Dedicated growth team</li>
             </ul>
-            <a class="btn btn--secondary btn--block" href="#contact" data-track="cta_plan_scale" data-i18n="plan.cta">Get a quote</a>
+            <a class="btn btn--secondary btn--block" href="#contact" data-track="cta_plan_scale" data-need="ecommerce" data-i18n="plan.cta">Get a quote</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ================= TESTIMONIALS (placeholders — replace with real quotes) ================= -->
-    <section class="section section--tight">
+    <!-- ================= WHO YOU WORK WITH (fill in, then remove the comment markers) =================
+    <section class="section section--tight" id="team">
       <div class="wrap">
-        <div class="quotes">
-          <figure class="quote reveal">
-            <blockquote data-i18n="q1">"They were the only agency that asked about our lead targets before showing us designs. We hit them in four months."</blockquote>
-            <figcaption><b>Rania Haddad</b><span data-i18n="q1.r">Marketing Director, Marina Estates</span></figcaption>
-          </figure>
-          <figure class="quote reveal">
-            <blockquote data-i18n="q2">"Our Arabic site finally feels native. Bookings from Saudi visitors have more than doubled."</blockquote>
-            <figcaption><b>Dr. Omar Al Suwaidi</b><span data-i18n="q2.r">Founder, Qamar Clinics</span></figcaption>
-          </figure>
-          <figure class="quote reveal">
-            <blockquote data-i18n="q3">"Fast, honest and on budget. They report on revenue, not vanity metrics."</blockquote>
-            <figcaption><b>James Whitfield</b><span data-i18n="q3.r">CEO, Oud House</span></figcaption>
-          </figure>
+        <div class="person reveal">
+          <img class="person__photo" src="/team/founder.webp" alt="[Founder name], founder of Open Growth" width="160" height="160" loading="lazy">
+          <div>
+            <p class="eyebrow">Who you will work with</p>
+            <h2 class="display-md">[Founder name], founder</h2>
+            <p class="body-lg muted">[Two or three true sentences: years of experience, industries, one thing you are proud of. Link to LinkedIn.]</p>
+          </div>
         </div>
       </div>
     </section>
+    Add real testimonials here too: full name, role, company, with their written permission.
+    -->
 
     <!-- ================= FAQ / OBJECTIONS ================= -->
     <section class="section" id="faq">
@@ -533,12 +492,12 @@
         <div class="faq">
           <details class="reveal"><summary data-i18n="f0.q">How much does a website cost in Dubai?</summary><p data-i18n="f0.a">It depends on scope. Template sites in Dubai can start under AED 5,000, while custom business websites from established agencies usually run from AED 15,000 to AED 50,000 or more. Our bilingual builds start at AED 18,000 for up to 8 pages, AED 35,000 for sites with CRM and lead tracking, and AED 70,000 for e-commerce and multi-market GCC sites.</p></details>
           <details class="reveal"><summary data-i18n="f7.q">Do I need a bilingual Arabic and English website?</summary><p data-i18n="f7.a">If any of your customers prefer Arabic, yes. Arabic is the official language of the UAE and many Gulf buyers search in Arabic first. A properly built Arabic version, on its own web address, lets you appear in those searches and makes Arabic-speaking visitors more likely to enquire.</p></details>
-          <details class="reveal"><summary data-i18n="f1.q">How long does it take to build a website in Dubai?</summary><p data-i18n="f1.a">Most projects go live in 6 to 10 weeks. Launch sites can be ready in about 4. We agree on a fixed timeline before we start.</p></details>
-          <details class="reveal"><summary data-i18n="f2.q">Do you really write in Arabic, or translate?</summary><p data-i18n="f2.a">Native Arabic copywriters write and review every page, and we design the RTL layout on its own instead of mirroring the English one.</p></details>
-          <details class="reveal"><summary data-i18n="f3.q">What if the site doesn't bring in more leads?</summary><p data-i18n="f3.a">We set target numbers in week 1 and report against them every month. On Growth plans, if we miss the agreed target in the first 90 days, CRO work continues free until we hit it.</p></details>
-          <details class="reveal"><summary data-i18n="f4.q">Will I be able to edit the site myself?</summary><p data-i18n="f4.a">Yes. Every site comes with an easy CMS, a recorded training session and 30 days of free support after launch.</p></details>
-          <details class="reveal"><summary data-i18n="f5.q">Do you work with businesses outside Dubai?</summary><p data-i18n="f5.a">Yes. We work with clients across the UAE, Saudi Arabia, Qatar, Kuwait, Bahrain and Oman, and meet in person in Dubai and Abu Dhabi.</p></details>
-          <details class="reveal"><summary data-i18n="f6.q">Can I pay in stages?</summary><p data-i18n="f6.a">Yes. Standard terms are 40% to start, 40% at design approval and 20% at launch.</p></details>
+          <details class="reveal"><summary data-i18n="f1.q">How long does it take to build a website in Dubai?</summary><p data-i18n="f1.a">Most projects go live in 6 to 10 weeks, and smaller Launch sites in 4 to 6. We agree a fixed timeline in your proposal before we start.</p></details>
+          <details class="reveal"><summary data-i18n="f2.q">Do you really write in Arabic, or translate?</summary><p data-i18n="f2.a">Arabic copy is written for Arabic readers, not machine-translated, and a native speaker reviews it before launch. We also design the right-to-left layout on its own instead of mirroring the English one.</p></details>
+          <details class="reveal"><summary data-i18n="f3.q">What if the site doesn't bring in more leads?</summary><p data-i18n="f3.a">We agree target numbers in week 1 and report against them every month. If results lag, the report shows what we think is holding them back and what we will change next.</p></details>
+          <details class="reveal"><summary data-i18n="f4.q">Will I be able to edit the site myself?</summary><p data-i18n="f4.a">Yes. Every site comes with an easy-to-use CMS and a handover session, so your team can update pages without us.</p></details>
+          <details class="reveal"><summary data-i18n="f5.q">Do you work with businesses outside Dubai?</summary><p data-i18n="f5.a">Yes. We are based in Dubai and work remotely with businesses across the UAE and the wider GCC.</p></details>
+          <details class="reveal"><summary data-i18n="f6.q">Can I pay in stages?</summary><p data-i18n="f6.a">Yes. Payments are split into milestones, which we agree in your proposal before any work starts.</p></details>
         </div>
       </div>
     </section>
@@ -548,8 +507,8 @@
       <div class="wrap contact">
         <div class="contact__copy">
           <p class="eyebrow reveal" data-i18n="ct.eyebrow">Start here</p>
-          <h2 class="display-lg reveal" data-i18n="ct.h2">Book your free audit.</h2>
-          <p class="body-lg muted reveal" data-i18n="ct.p">Four quick questions. A strategist replies within one business day, usually the same day.</p>
+          <h2 class="display-lg reveal" data-i18n="ct.h2">Get your free audit or a quote.</h2>
+          <p class="body-lg muted reveal" data-i18n="ct.p">Tell us what you need in under a minute. We reply within one business day.</p>
           <ul class="contact__direct reveal">
             <li><span data-i18n="ct.call">Call</span><a href="tel:+97140000000" data-track="phone_contact">+971 4 000 0000</a></li>
             <li><span>WhatsApp</span><a href="https://wa.me/971500000000" target="_blank" rel="noopener" data-track="whatsapp_contact">+971 50 000 0000</a></li>
@@ -558,30 +517,30 @@
           </ul>
         </div>
 
-        <!-- Replace action with your form endpoint (Formspree, HubSpot, etc.) -->
-        <form class="form reveal" id="leadForm" action="#" method="post" novalidate>
-          <p class="micro muted" data-i18n="fm.req">All four fields are required.</p>
+        <!-- Posts to /api/lead (Vercel function). Set WEB3FORMS_KEY or LEAD_WEBHOOK_URL in Vercel to receive leads. -->
+        <form class="form reveal" id="leadForm" action="/api/lead" method="post" novalidate>
+          <p class="micro muted" data-i18n="fm.req">Fields marked * are required.</p>
           <p class="form__fail" role="alert" tabindex="-1" hidden data-i18n="fm.fail">We couldn't send your request. Check your connection and try again, or message us on WhatsApp.</p>
           <div class="field">
             <label for="need"><span data-i18n="fm.need">What do you need?</span> <span class="req" aria-hidden="true">*</span></label>
             <select id="need" name="need" required>
               <option value="" data-i18n="fm.choose">Choose one</option>
+              <option value="audit" data-i18n="fm.need0">A free audit of my current site</option>
               <option value="new-website" data-i18n="fm.need1">A new website</option>
               <option value="redesign" data-i18n="fm.need2">Redesign of my current site</option>
               <option value="seo-growth" data-i18n="fm.need3">More leads from my current site</option>
               <option value="ecommerce" data-i18n="fm.need4">E-commerce store</option>
             </select>
-            <p class="field__error" id="needError" hidden data-i18n="fm.err.need">Choose what you need so we can tailor the audit.</p>
+            <p class="field__error" id="needError" hidden data-i18n="fm.err.need">Choose what you need so we can reply with the right next step.</p>
           </div>
           <fieldset class="field">
-            <legend><span data-i18n="fm.budget">Budget band</span> <span class="req" aria-hidden="true">*</span></legend>
+            <legend><span data-i18n="fm.budget">Budget band</span> <span class="opt" data-i18n="fm.opt">(optional)</span></legend>
             <div class="chips">
-              <label class="chip"><input type="radio" name="budget" value="18-35k" required><span>AED 18–35k</span></label>
+              <label class="chip"><input type="radio" name="budget" value="18-35k"><span>AED 18–35k</span></label>
               <label class="chip"><input type="radio" name="budget" value="35-70k"><span>AED 35–70k</span></label>
               <label class="chip"><input type="radio" name="budget" value="70k+"><span>AED 70k+</span></label>
               <label class="chip"><input type="radio" name="budget" value="unsure"><span data-i18n="fm.unsure">Not sure yet</span></label>
             </div>
-            <p class="field__error" id="budgetError" hidden data-i18n="fm.err.budget">Pick a budget band, or choose "Not sure yet".</p>
           </fieldset>
           <div class="field">
             <label for="timeline"><span data-i18n="fm.time">Timeline</span> <span class="req" aria-hidden="true">*</span></label>
@@ -599,11 +558,13 @@
             <p class="field__help micro muted" id="contactHelp" data-i18n="fm.help">We reply on whichever you give us, usually the same day.</p>
             <p class="field__error" id="contactError" hidden data-i18n="fm.err.contact">Enter an email like you@company.ae or a phone number with at least 8 digits.</p>
           </div>
-          <button class="btn btn--primary btn--block" type="submit" data-track="form_submit"><span class="btn__spin" aria-hidden="true"></span><span data-i18n="fm.submit">Get my free audit</span></button>
-          <p class="micro muted" data-i18n="fm.note">No spam, no sales pressure. We only use your details to reply.</p>
+          <button class="btn btn--primary btn--block" type="submit" data-track="form_submit"><span class="btn__spin" aria-hidden="true"></span><span data-i18n="fm.submit">Send my request</span></button>
+          <!-- Spam trap: real visitors never see or fill this -->
+          <div class="hp" aria-hidden="true"><label for="hpField">Leave this empty</label><input id="hpField" name="company_website" type="text" tabindex="-1" autocomplete="off"></div>
+          <p class="micro muted"><span data-i18n="fm.note">No spam, no sales pressure. We only use your details to reply.</span> <a class="link" href="/privacy/" data-i18n="fm.privacy">Privacy policy</a></p>
           <div class="form__ok" role="status" tabindex="-1" hidden>
             <strong data-i18n="fm.ok.h">Thanks. We're on it.</strong>
-            <span data-i18n="fm.ok.p">A strategist will be in touch within one business day.</span>
+            <span data-i18n="fm.ok.p">We'll be in touch within one business day.</span>
             <button class="btn btn--secondary btn--sm" type="button" id="formReset" data-i18n="fm.again">Send another request</button>
           </div>
         </form>
@@ -646,14 +607,14 @@
         </div>
       </div>
       <div class="footer__base micro muted">
-        <span>© <span id="year">2026</span> Open Growth FZ-LLC</span>
-        <span data-i18n="ft.loc">Dubai · Abu Dhabi · Riyadh</span>
+        <span>© <span id="year">2026</span> Open Growth · <a href="/privacy/" data-i18n="fm.privacy">Privacy policy</a></span>
+        <span data-i18n="ft.loc">Based in Dubai, serving the UAE and GCC</span>
       </div>
     </div>
   </footer>
 
   <!-- Floating WhatsApp -->
-  <a class="wa-float" href="https://wa.me/971500000000" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" data-track="whatsapp_float">
+  <a class="wa-float is-hidden" href="https://wa.me/971500000000" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" data-track="whatsapp_float">
     <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.3-.2-.5-.3Z"/></svg>
   </a>
 
